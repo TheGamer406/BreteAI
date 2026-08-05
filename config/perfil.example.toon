@@ -1,0 +1,54 @@
+# Plantilla de perfil para BreteAI (formato TOON).
+# Copia este archivo a resources/perfil.toon y complétalo con tus datos reales.
+# resources/ está en .gitignore, así que tus datos personales NO se suben al repo.
+
+candidato:
+  nombre: Nombre Apellido
+  email: tu-correo@ejemplo.com
+  telefono: +506 0000-0000
+  linkedin: Tu Nombre
+  ubicacion: San Jose, Costa Rica
+  seniority: Junior
+  resumen: Breve resumen profesional (2-3 lineas) que la IA usa como contexto.
+
+idiomas[2]{idioma,nivel}:
+  Espanol,nativo
+  Ingles,B2
+
+intereses_rol[3]: Backend, Data Science, Data Analyst
+
+skills_tecnicos:
+  lenguajes[4]: Python, JavaScript, SQL, Java
+  web[3]: HTML, CSS, React
+  documentacion_diseno[2]: Figma, Miro
+  ia[1]: Ingenieria de prompts e integracion de LLMs
+
+experiencia[1]{empresa,rol,periodo,detalle}:
+  Empresa,Rol,AAAA - Presente,Descripcion breve de responsabilidades.
+
+formacion[1]{institucion,titulo,periodo}:
+  Universidad,Titulo,AAAA - AAAA
+
+soft_skills[3]: Trabajo en equipo, Resolucion de problemas, Aprendizaje continuo
+
+preferencias:
+  modalidades[3]: presencial, virtual, mixto
+  ubicaciones_aceptadas[2]: Costa Rica, Remoto internacional
+  reubicacion_internacional: true
+  salario:
+    moneda: CRC
+    actual: 0
+    minimo_neto: 0
+    ideal_neto: 0
+    tope_ideal_neto: 0
+    nota: Cifras netas post rebajos de ley. Si la oferta no publica salario, buscar referencia web o dejar null.
+  keywords[5]: junior, backend, data, python, sql
+  excluir[2]: senior lead requerido, +5 anios experiencia obligatoria
+
+criterios_match:
+  peso_skills: alto
+  peso_seniority: alto
+  peso_salario: medio
+  peso_modalidad: medio
+  penalizar[2]: requisitos senior, stack totalmente ajeno al perfil
+  bonificar[3]: menciona junior/trainee, stack conocido, remoto o reubicacion

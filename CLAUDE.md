@@ -1,0 +1,56 @@
+# BreteAI — Buscador de trabajos automatizado con integración de IA
+
+## Contexto para futuras sesiones
+
+Sistema **open source, 100% local**, que busca ofertas de trabajo en fuentes legales 4 veces al día, las analiza con IA local (resumen + score de match 0-100 contra el perfil), las guarda en PostgreSQL y notifica por correo. Portal web (Next.js) con gestión tipo ticket + dashboard de analítica. Doble propósito: **uso real** (mejor trabajo) + **portafolio** (automatización con IA y buenas prácticas). Configurable para cualquiera vía `perfil.toon`.
+
+## Estructura del repo
+
+- Repo **padre** `BreteAI` con **submódulos**: `BreteAI-Backend`, `BreteAI-Frontend`, `BreteAI-Infra`.
+- `docs/` — documentación pública. `config/` — plantillas (`perfil.example.toon`).
+- `resources/` — **NO versionado** (gitignored): datos personales, CVs, perfil real, notas de planeación.
+
+## Documentos fuente (leer antes de trabajar)
+
+- **`docs/requirements.md`** — requerimientos completos. **FUENTE DE VERDAD.**
+- **`docs/ROADMAP.md`** — qué va en v1 y qué queda para después (checklist por fases).
+- **`config/perfil.example.toon`** — plantilla del perfil (pública, sin datos reales).
+- **`resources/perfil.toon`** — perfil REAL que consume la IA (privado, TOON).
+- **`resources/preguntas.md`** — 76 preguntas respondidas (historial de decisiones).
+- **`resources/idea.md`** — planteamiento original.
+- **`resources/cv/`** — CVs en PDF (ES/EN), privados.
+
+## Perfil del usuario
+
+Estudiante Ing. Desarrollo de Software (UCenfotec, grad. mar-2027), **Junior**. Intereses: Backend, Data Science, Data Analyst. Skills: Python, JS, Java, C#, Node.js, T-SQL, React, Tailwind. Inglés B2+. Costa Rica; abierto a presencial/remoto/mixto + reubicación internacional. **Datos personales y meta salarial en `resources/perfil.toon` (privado, no versionado).**
+
+## Stack CERRADO (v1)
+
+- **Backend/pipeline:** Python + FastAPI. API REST.
+- **Base de datos:** PostgreSQL (mismo server que la GPU). Backup diario ~17:00.
+- **IA:** 100% local con Ollama. Modelo recomendado Qwen 2.5 7B Q4_K_M (tiene Llama 3.2). Latencia aceptada. **Sin API de pago** (Claude Pro $20 NO incluye API).
+- **Frontend:** Next.js, hospedado en el mismo server (red Docker). Login seguro single-user (password hasheada bcrypt/argon2).
+- **Correo:** Gmail SMTP con App Password → `jmurillochevez@gmail.com`. Top 5-10 no aplicadas en cards con link al portal.
+- **Infra:** servicios separados en red Docker `breteai-net`, multi-repo (`breteai-backend`, `breteai-frontend`, `breteai-infra`), `.env` + GitHub Secrets, volúmenes persistentes.
+- **CI/CD:** GitHub Actions (runners gratis) build/test → auto-deploy SSH sobre Tailscale (`docker compose pull && up -d`). Flujo DevOps estándar (el usuario quiere aprenderlo).
+- **Graphify:** parte del pipeline; relaciones entre y dentro de repos.
+
+## Reglas de negocio clave
+
+- **Solo fuentes legales:** APIs oficiales/públicas (Remotive, RemoteOK, Arbeitnow, Jobicy, Himalayas, WeWorkRemotely, Adzuna) + ATS Greenhouse/Lever/Ashby (IBM/Amazon/Microsoft, etc.). NO scraping de LinkedIn/Indeed.
+- **Corridas:** 05:00, 11:00, 16:00, 22:00 (CR). Si hay resultados → correo.
+- **Estados de oferta:** nueva, vista, aplicada, enProceso, enEspera, respondida, rechazada.
+- **Guardar todo el histórico** (análisis de datos).
+- **Salario ausente:** buscar referencia web, si no `null`/"no especificado".
+- **Feedback de IA:** correcciones ajustan criterios del prompt (simple, NO re-entrenamiento).
+- **Dedup:** por empresa + puesto (y semántico con embeddings); en portal marcar "similar a".
+
+## Roadmap
+
+1. Scraping + DB → 2. IA → 3. Correo → 4. Portal → 5. Dashboard. (Detalle y backlog en `ROADMAP.md`.)
+
+## Reglas del proyecto
+
+- **Todo local.** Gratis/open source, tope duro ~$10/mes.
+- Priorizar buenas prácticas (es portafolio).
+- Fuentes CR (Computrabajo/Brete.cr/elempleo) y monitor GPU (`alertServer.md`) = fases posteriores.

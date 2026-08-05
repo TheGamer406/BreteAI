@@ -1,0 +1,25 @@
+# --- Datos personales / privados (NO subir a un repo público) ---
+resources/
+
+# El perfil real puede estar también en config/ si lo copias ahí
+config/perfil.toon
+
+# --- Secretos ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Submódulos: se agregan tras crear los remotos en GitHub ---
+# (mientras no sean submódulos, se ignoran para evitar warnings de repos embebidos)
+/BreteAI-Backend/
+/BreteAI-Frontend/
+/BreteAI-Infra/
+
+# --- Sistema / editores ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
