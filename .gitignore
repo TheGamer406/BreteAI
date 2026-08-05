@@ -11,6 +11,11 @@ config/perfil.toon
 *.pem
 *.key
 
+# --- graphify: ignorar interno/máquina, conservar grafo y reporte ---
+graphify-out/.graphify_*
+graphify-out/cache/
+graphify-out/cost.json
+
 # --- Sistema / editores ---
 .DS_Store
 Thumbs.db
