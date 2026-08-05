@@ -54,3 +54,12 @@ Estudiante Ing. Desarrollo de Software (UCenfotec, grad. mar-2027), **Junior**. 
 - **Todo local.** Gratis/open source, tope duro ~$10/mes.
 - Priorizar buenas prácticas (es portafolio).
 - Fuentes CR (Computrabajo/Brete.cr/elempleo) y monitor GPU (`alertServer.md`) = fases posteriores.
+
+## graphify
+
+Este proyecto tiene un grafo de conocimiento en `graphify-out/graph.json` (usar el intérprete `~/.local/bin/graphify`, versión nueva — NO el `/usr/bin/graphify` viejo).
+
+- **Antes de responder** preguntas sobre la arquitectura/código, consultar el grafo: `graphify query "<pregunta>"`. Si `graphify-out/graph.json` existe, responder desde ahí en vez de re-explorar todo.
+- **Después de cambios de código** relevantes, actualizar el grafo: `/graphify --update` (reconstruye AST + semántico). El grafo cubre el repo padre + submódulos.
+- **Privacidad:** graphify respeta `.gitignore`, así que `resources/` (datos personales) queda fuera del grafo. Mantener así.
+- **Hook opcional:** `~/.local/bin/graphify hook install` deja un post-commit que reconstruye el grafo (solo AST/código) tras cada commit.
