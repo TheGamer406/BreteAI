@@ -1,0 +1,9 @@
+[submodule "BreteAI-Backend"]
+	path = BreteAI-Backend
+	url = https://github.com/TheGamer406/BreteAI-Backend.git
+[submodule "BreteAI-Frontend"]
+	path = BreteAI-Frontend
+	url = https://github.com/TheGamer406/BreteAI-Frontend.git
+[submodule "BreteAI-Infra"]
+	path = BreteAI-Infra
+	url = https://github.com/TheGamer406/BreteAI-Infra.git

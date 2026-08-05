@@ -19,7 +19,7 @@ Desde cada carpeta hija (ejemplo backend):
 
 ```bash
 cd BreteAI-Backend
-git remote add origin git@github.com:<usuario>/BreteAI-Backend.git
+git remote add origin git@github.com:TheGamer406/BreteAI-Backend.git
 git branch -M main
 git push -u origin main
 cd ..
@@ -37,7 +37,7 @@ Desde la raíz del repo padre:
 # Mover temporalmente las carpetas locales y agregarlas como submódulos
 for r in Backend Frontend Infra; do
   rm -rf "BreteAI-$r"
-  git submodule add git@github.com:<usuario>/BreteAI-$r.git "BreteAI-$r"
+  git submodule add git@github.com:TheGamer406/BreteAI-$r.git "BreteAI-$r"
 done
 
 git commit -m "chore: agrega submódulos backend, frontend e infra"
@@ -54,7 +54,7 @@ git push
 ## 4. Clonar el proyecto completo (referencia futura)
 
 ```bash
-git clone --recurse-submodules git@github.com:<usuario>/BreteAI.git
+git clone --recurse-submodules git@github.com:TheGamer406/BreteAI.git
 # o si ya lo clonaste:
 git submodule update --init --recursive
 ```
