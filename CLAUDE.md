@@ -14,6 +14,7 @@ Sistema **open source, 100% local**, que busca ofertas de trabajo en fuentes leg
 
 - **`docs/requirements.md`** — requerimientos completos. **FUENTE DE VERDAD.**
 - **`docs/ROADMAP.md`** — qué va en v1 y qué queda para después (checklist por fases).
+- **`docs/design.md`** — diseño técnico: pipeline por etapas (raw → cola → IA → ofertas), modelo canónico, DDL borrador, estrategia de tests por flujo (Bruno/pytest/testcontainers/MailHog).
 - **`config/perfil.example.toon`** — plantilla del perfil (pública, sin datos reales).
 - **`resources/perfil.toon`** — perfil REAL que consume la IA (privado, TOON).
 - **`resources/preguntas.md`** — 76 preguntas respondidas (historial de decisiones).
@@ -54,6 +55,13 @@ Estudiante Ing. Desarrollo de Software (UCenfotec, grad. mar-2027), **Junior**. 
 - **Todo local.** Gratis/open source, tope duro ~$10/mes.
 - Priorizar buenas prácticas (es portafolio).
 - Fuentes CR (Computrabajo/Brete.cr/elempleo) y monitor GPU (`alertServer.md`) = fases posteriores.
+
+## Entorno local de desarrollo (PC del usuario)
+
+- **PostgreSQL: solo vía Docker, nunca paquete nativo.** `BreteAI-Infra/docker-compose.yml` levanta `postgres:16-alpine` en la red `breteai-net`, con `.env` (copiado de `.env.example`, no versionado) y `db/init/001_schema.sql` (el DDL de `design.md` §3, se aplica solo la primera vez que se crea el volumen). Para reaplicar el schema desde cero: `docker compose down -v && docker compose up -d` (borra los datos).
+- **Cliente de DB: DBeaver Community, instalado nativo por pacman** (`sudo pacman -S dbeaver`, repo `extra`). **No usar la versión Flatpak** — venía preinstalada en el sistema, quedaba desactualizada y generaba confusión con dos instalaciones; se desinstaló.
+- **DBeaver requiere Java 21+.** Si tira "incompatible JVM": `archlinux-java status` para ver JDKs disponibles y `sudo archlinux-java set java-26-openjdk` (o la versión ≥21 disponible) para cambiar el default del sistema.
+- Docker se activa con `sudo systemctl enable --now docker`; el usuario ya está en el grupo `docker` (no requiere sudo para `docker compose`).
 
 ## graphify
 

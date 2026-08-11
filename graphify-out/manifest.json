@@ -15,9 +15,9 @@
     "semantic_hash": "db7cb2b0aff3140be6e499942d0fab2f"
   },
   "CLAUDE.md": {
-    "mtime": 1785909415.9666557,
-    "ast_hash": "167c3d21e23287a107a88705adc7bc66",
-    "semantic_hash": "167c3d21e23287a107a88705adc7bc66"
+    "mtime": 1786484258.4237545,
+    "ast_hash": "935f6c4d7425a42a89072f05b2d73455",
+    "semantic_hash": "935f6c4d7425a42a89072f05b2d73455"
   },
   "README.md": {
     "mtime": 1785909465.5115364,
@@ -25,9 +25,9 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1785908850.0429385,
-    "ast_hash": "29453df6319bd7418fa73d0972fb03b1",
-    "semantic_hash": "29453df6319bd7418fa73d0972fb03b1"
+    "mtime": 1786484246.7407327,
+    "ast_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5",
+    "semantic_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5"
   },
   "docs/SETUP-GIT.md": {
     "mtime": 1785909775.573532,
@@ -35,8 +35,23 @@
     "semantic_hash": "9d452546e4a5cf1f8317adc5cdc1cff7"
   },
   "docs/requirements.md": {
-    "mtime": 1785909384.98474,
-    "ast_hash": "d3a08bf05c335cd18ad4d04e8d865a30",
-    "semantic_hash": "d3a08bf05c335cd18ad4d04e8d865a30"
+    "mtime": 1786482215.2614322,
+    "ast_hash": "49a4960f46a3e9378dca69cb6c5406be",
+    "semantic_hash": "49a4960f46a3e9378dca69cb6c5406be"
+  },
+  "docs/design.md": {
+    "mtime": 1786482165.0212765,
+    "ast_hash": "d97397501f55c322babae2ca4ed680d4",
+    "semantic_hash": "d97397501f55c322babae2ca4ed680d4"
+  },
+  "BreteAI-Infra/db/init/001_schema.sql": {
+    "mtime": 1786483002.1868515,
+    "ast_hash": "dc62e3649a4eca2d86f13a8efe691335",
+    "semantic_hash": "dc62e3649a4eca2d86f13a8efe691335"
+  },
+  "BreteAI-Infra/docker-compose.yml": {
+    "mtime": 1786482981.2937877,
+    "ast_hash": "cf2f84a201aa0e8204f555a713123e06",
+    "semantic_hash": "cf2f84a201aa0e8204f555a713123e06"
   }
 }
