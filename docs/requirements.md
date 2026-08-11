@@ -4,6 +4,7 @@
 > Definido a partir de `idea.md`, `inspiration.md` y las respuestas de `preguntas.md` (63 + 64-76).
 > Estado: **v1 — decisiones de arquitectura CERRADAS.** Perfil del candidato en `perfil.toon`.
 > Todo corre **local** (server propio del usuario), gratis/open source, tope ~$10/mes.
+> **Diseño técnico detallado** (pipeline por etapas, modelo canónico, DDL, tests): ver `design.md`.
 
 ---
 
@@ -88,6 +89,12 @@ Orden acordado de construcción (cada fase entrega algo funcional):
 
 - **Guardar todo** (incluyendo ofertas viejas) para análisis de datos posterior.
 
+### 4.8 Pipeline por etapas (staging)
+
+- **DECISIÓN:** flujo `obtener → guardar RAW tal cual → (fin de corrida) → cola → IA normaliza a estructura fija → tabla ofertas`.
+- El JSON crudo se guarda en `ofertas_raw` (JSONB) **antes** de cualquier procesamiento; la propia tabla funciona como cola de la IA (sin Redis/RabbitMQ en v1).
+- Beneficios: reprocesable sin volver a llamar APIs, idempotente (`UNIQUE fuente + id_externo`), y cada etapa se prueba por separado. Detalle en `design.md` §1.
+
 ---
 
 ## 5. Capa de IA
@@ -120,6 +127,8 @@ Orden acordado de construcción (cada fase entrega algo funcional):
 - **DECISIÓN: PostgreSQL** (mejor para JSON crudo de ofertas + analítica del dashboard).
 - Corre en el **mismo server** que la GPU.
 - **Backups automáticos diarios ~17:00.**
+- **Modelo canónico de oferta:** formato único al que todo conector mapea su fuente (ver `design.md` §2); la DB, la IA, el correo y el portal solo hablan ese formato.
+- Tablas principales: `corridas` (registro de cada corrida), `ofertas_raw` (staging/cola, JSON crudo), `ofertas` (estructura fija), más gestión (`comentarios`, `adjuntos`, `oferta_historial`, `feedback_ia`, `correos`). DDL borrador en `design.md` §3.
 - Campos por oferta: título, empresa, ubicación, salario, modalidad, link, descripción, fecha, **score**, **estado**, comentarios, fuente, JSON crudo original.
 - **Estados:** `nueva`, `vista`, `aplicada`, `enProceso`, `enEspera` (respondieron / avanzando), `respondida`, `rechazada`.
 - **Optimización de consultas:** se buscará rendimiento con índices bien pensados; Stored Procedures opcionales para las consultas clave (aplicadas / no aplicadas). *Nota: con un solo server el impacto es menor; un ORM con buenos índices suele ser suficiente y más mantenible — a validar en implementación.*
@@ -204,7 +213,21 @@ Métricas:
 
 ---
 
-## 14. Presupuesto
+## 14. Estrategia de Pruebas
+
+- **DECISIÓN cliente API: Bruno** (open source, offline; colecciones en texto plano versionadas en git, CLI `bru run` para CI). Alternativa a Postman.
+- **Principio:** cada flujo se prueba **aislado** gracias al pipeline por etapas (cada etapa lee de un lado y escribe en otro). Detalle completo por flujo en `design.md` §4.
+  - **Conectores:** fixtures JSON reales → unitarios de mapeo sin red; tests de **contrato** contra la API real en workflow scheduled = alerta de conector roto.
+  - **IA:** validación Pydantic de la salida del LLM (bien formada, malformada, truncada, fuera de rango); worker con mock de Ollama; golden set de scores contra Ollama real solo en el server.
+  - **Correo:** render del template unitario; envío contra MailHog (SMTP falso en Docker). Gmail real nunca en tests.
+  - **API/Portal:** TestClient de FastAPI + Postgres de prueba; colección Bruno de la API propia como contrato para el frontend.
+  - **Dashboard:** agregaciones con seed conocido → números exactos.
+- **Herramientas:** pytest, testcontainers, Bruno, MailHog, ruff, Vitest/Testing Library, Playwright (opcional).
+- **CI:** lint → unit tests → build → smoke test (compose + healthchecks) → deploy. Contratos externos en workflow scheduled aparte (no bloquean deploy).
+
+---
+
+## 15. Presupuesto
 
 - **Gratis / open source**, tope duro ~$10/mes. (El usuario ya paga Claude $20 aparte; ese pago **no** cubre API.)
 

@@ -8,9 +8,9 @@ Marcar `[x]` al completar.
 ## v1 (MVP funcional)
 
 ### Fase 1 — Scraping + DB
-- [ ] Repo `breteai-infra`: docker-compose con PostgreSQL + red `breteai-net` + volúmenes.
-- [ ] Esquema de DB (tabla `ofertas` con estados, JSON crudo, fuente, score, etc.).
-- [ ] Backup diario automático ~17:00.
+- [x] Repo `breteai-infra`: docker-compose con PostgreSQL + red `breteai-net` + volúmenes.
+- [x] Esquema de DB según `design.md` §3: `corridas`, `ofertas_raw` (staging/cola), `ofertas` + tablas de gestión. Aplicado y verificado en DBeaver (2026-08-11).
+- [ ] Backup diario automático ~17:00 (+ probar restore una vez).
 - [ ] Conectores de fuentes legales:
   - [ ] Remotive
   - [ ] RemoteOK
@@ -21,9 +21,11 @@ Marcar `[x]` al completar.
   - [ ] ATS Greenhouse (board tokens de empresas objetivo)
   - [ ] ATS Lever
   - [ ] ATS Ashby
-- [ ] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR).
-- [ ] Deduplicación básica (empresa + puesto).
-- [ ] Alerta si un conector se rompe.
+- [ ] Modelo canónico de oferta (mapeo por conector, `design.md` §2).
+- [ ] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR) + registro en tabla `corridas`.
+- [ ] Deduplicación básica (empresa + puesto) + idempotencia (`fuente + id_externo`).
+- [ ] Alerta si un conector se rompe (tests de contrato scheduled, `design.md` §4-A).
+- [ ] **Tests:** fixtures JSON por fuente + unitarios de mapeo; integración con testcontainers; colección Bruno por fuente.
 
 ### Fase 2 — IA
 - [ ] Ollama en el server con Qwen 2.5 7B (Q4_K_M) — comparar vs Llama 3.2.
@@ -31,11 +33,15 @@ Marcar `[x]` al completar.
 - [ ] Enriquecimiento "info de segunda mano" (ej: proveedor vs empresa real).
 - [ ] Dedup semántico (embeddings).
 - [ ] Estimación de salario (referencia web) cuando no viene en la oferta.
-- [ ] Feedback simple: correcciones ajustan criterios del prompt.
+- [ ] Feedback simple: correcciones ajustan criterios del prompt (tabla `feedback_ia`).
+- [ ] Validación estricta de la salida del LLM (Pydantic) + reintentos + raw en `error` reprocesable.
+- [ ] **Tests:** unitarios de prompt/validación; worker con mock de Ollama; golden set de scores (solo server, `design.md` §4-B).
 
 ### Fase 3 — Correo
 - [ ] Gmail SMTP con App Password.
 - [ ] Correo con top 5-10 (no aplicadas) en cards + link al portal.
+- [ ] Registro de correos enviados (vista "último correo").
+- [ ] **Tests:** render del template (unitario) + envío contra MailHog (`design.md` §4-C). Gmail real nunca en tests.
 
 ### Fase 4 — Portal (Next.js)
 - [ ] Login seguro (single user, password hasheada).
@@ -43,6 +49,7 @@ Marcar `[x]` al completar.
 - [ ] Gestión tipo ticket: estados, etiquetas, comentarios, archivos.
 - [ ] Filtros: empresa, modalidad, ubicación, estado, score.
 - [ ] Responsivo (PC-first).
+- [ ] **Tests:** endpoints con TestClient de FastAPI (auth incluida); colección Bruno de la API propia (contrato para el frontend, corre en CI); Vitest en componentes (`design.md` §4-D).
 
 ### Fase 5 — Dashboard
 - [ ] Aplicadas vs no aplicadas.
@@ -50,9 +57,14 @@ Marcar `[x]` al completar.
 - [ ] Modalidad (presencial/virtual/mixto).
 - [ ] Ubicación (CR vs fuera + países).
 - [ ] Navegación con filtros.
+- [ ] **Tests:** queries de agregación con seed conocido → números exactos (`design.md` §4-E).
 
 ### Transversal
 - [ ] CI/CD: GitHub Actions (runner gratis) → auto-deploy SSH sobre Tailscale.
+- [ ] Pipeline CI: `ruff` → unit tests → build imágenes → smoke test → deploy.
+- [ ] Smoke test: `docker compose up` + healthchecks (`/health`, `pg_isready`, `ollama list`).
+- [ ] Workflow scheduled aparte para tests de contrato de APIs externas (no bloquea deploy).
+- [ ] Bruno como cliente API (open source; colecciones versionadas en git, `bru run` en CI).
 - [ ] Graphify integrado al pipeline (relaciones entre y dentro de repos).
 - [ ] README por repo + documentación.
 
