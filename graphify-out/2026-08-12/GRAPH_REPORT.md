@@ -1,18 +1,13 @@
-# Graph Report - BreteAI  (2026-08-12)
+# Graph Report - .  (2026-08-11)
 
 ## Corpus Check
-- 45 files · ~13,087 words
+- 4 files · ~6,650 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 92 nodes · 102 edges · 20 communities (8 shown, 12 thin omitted)
-- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.92)
-- Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `858c9b39`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
+- 79 nodes · 90 edges · 20 communities (8 shown, 12 thin omitted)
+- Extraction: 83% EXTRACTED · 17% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.92)
+- Token cost: 49,260 input · 0 output
 
 ## Community Hubs (Navigation)
 - Capa de IA y Perfil
@@ -38,15 +33,15 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `Fase 1 — Scraping + DB` - 10 edges
-2. `Guía de Implementación - BreteAI` - 9 edges
-3. `Tabla ofertas (estructura fija)` - 8 edges
-4. `v1 (MVP funcional)` - 7 edges
-5. `Fase 2 — IA` - 6 edges
-6. `Servicio db (Postgres 16-alpine)` - 6 edges
-7. `Tabla ofertas_raw (staging/cola)` - 5 edges
-8. `Entorno local de desarrollo (PC del usuario)` - 5 edges
-9. `Fase 1 — Scraping + DB` - 4 edges
-10. `BreteAI (proyecto)` - 4 edges
+2. `Tabla ofertas (estructura fija)` - 8 edges
+3. `v1 (MVP funcional)` - 7 edges
+4. `Fase 2 — IA` - 6 edges
+5. `Servicio db (Postgres 16-alpine)` - 6 edges
+6. `Tabla ofertas_raw (staging/cola)` - 5 edges
+7. `Entorno local de desarrollo (PC del usuario)` - 5 edges
+8. `BreteAI (proyecto)` - 4 edges
+9. `Principio: solo fuentes legales` - 4 edges
+10. `Worker IA (Ollama)` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Reglas de negocio clave` --semantically_similar_to--> `Principio: solo fuentes legales`  [INFERRED] [semantically similar]
@@ -87,8 +82,8 @@ Cohesion: 0.29
 Nodes (8): BreteAI-Frontend, MailHog (SMTP falso para tests), Dashboard de analítica, Next.js (portal web), Fase 3 — Correo, Fase 4 — Portal (Next.js), Fase 5 — Dashboard, v1 (MVP funcional)
 
 ### Community 4 - "Docker Compose de Postgres"
-Cohesion: 0.26
-Nodes (12): Healthcheck del servicio db (pg_isready), Montaje ./db/init → /docker-entrypoint-initdb.d, Red Docker breteai-net, Servicio db (Postgres 16-alpine), Volumen db_data, DBeaver Community (cliente DB nativo por pacman), DBeaver requiere Java 21+, Activación de Docker (systemctl + grupo docker) (+4 more)
+Cohesion: 0.48
+Nodes (7): Healthcheck del servicio db (pg_isready), Montaje ./db/init → /docker-entrypoint-initdb.d, Red Docker breteai-net, Servicio db (Postgres 16-alpine), Volumen db_data, PostgreSQL solo vía Docker (nunca paquete nativo), Fase 1 — Scraping + DB
 
 ### Community 5 - "Alcance y Backlog"
 Cohesion: 0.33
@@ -99,22 +94,22 @@ Cohesion: 0.33
 Nodes (6): Integración graphify, Estrategia de pruebas por flujo, Bruno (cliente API), CI/CD con GitHub Actions, Graphify (requisito esencial), Transversal — CI/CD, smoke, Bruno, Graphify
 
 ### Community 7 - "Entorno Local de Desarrollo"
-Cohesion: 0.15
-Nodes (12): Cómo usar esta guía, Estructura de módulos — Fase 1 (árbol completo), Fase 1 — Scraping + DB, Fase 2 — IA (resumen), Fase 3 — Correo (resumen), Fase 4 — Portal (resumen), Fase 5 — Dashboard (resumen), Guía de Implementación - BreteAI (+4 more)
+Cohesion: 0.50
+Nodes (5): DBeaver Community (cliente DB nativo por pacman), DBeaver requiere Java 21+, Activación de Docker (systemctl + grupo docker), Entorno local de desarrollo (PC del usuario), Esquema de DB aplicado y verificado en DBeaver (2026-08-11)
 
 ## Knowledge Gaps
-- **35 isolated node(s):** `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)`, `No hacer en esta fase (para no salirse de alcance)`, `Fase 2 — IA (resumen)` (+30 more)
+- **25 isolated node(s):** `Submódulos git`, `Integración graphify`, `perfil.toon (configuración del perfil)`, `Estructura multi-repo con submódulos`, `Remotive (feed abierto)` (+20 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Fase 1 — Scraping + DB` connect `Docker Compose de Postgres` to `Backend, DB e Infra`, `Pipeline por Etapas (Staging)`, `Portal, Correo y Dashboard`, `Pruebas, CI/CD y Graphify`?**
-  _High betweenness centrality (0.232) - this node is a cross-community bridge._
+- **Why does `Fase 1 — Scraping + DB` connect `Docker Compose de Postgres` to `Backend, DB e Infra`, `Pipeline por Etapas (Staging)`, `Portal, Correo y Dashboard`, `Pruebas, CI/CD y Graphify`, `Entorno Local de Desarrollo`?**
+  _High betweenness centrality (0.317) - this node is a cross-community bridge._
 - **Why does `v1 (MVP funcional)` connect `Portal, Correo y Dashboard` to `Capa de IA y Perfil`, `Pipeline por Etapas (Staging)`, `Docker Compose de Postgres`, `Pruebas, CI/CD y Graphify`?**
-  _High betweenness centrality (0.226) - this node is a cross-community bridge._
+  _High betweenness centrality (0.308) - this node is a cross-community bridge._
 - **Why does `Tabla ofertas (estructura fija)` connect `Capa de IA y Perfil` to `Pipeline por Etapas (Staging)`, `Alcance y Backlog`?**
-  _High betweenness centrality (0.146) - this node is a cross-community bridge._
-- **What connects `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)` to the rest of the system?**
-  _35 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.199) - this node is a cross-community bridge._
+- **What connects `Submódulos git`, `Integración graphify`, `perfil.toon (configuración del perfil)` to the rest of the system?**
+  _25 weakly-connected nodes found - possible documentation gaps or missing edges._

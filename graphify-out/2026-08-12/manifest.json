@@ -1,0 +1,57 @@
+{
+  "BreteAI-Backend/README.md": {
+    "mtime": 1785909836.6891005,
+    "ast_hash": "eb9680358fa0ca638415c63b61fa4eb6",
+    "semantic_hash": "eb9680358fa0ca638415c63b61fa4eb6"
+  },
+  "BreteAI-Frontend/README.md": {
+    "mtime": 1785909837.1571002,
+    "ast_hash": "c181b9f309e91cb385730d811509b6e8",
+    "semantic_hash": "c181b9f309e91cb385730d811509b6e8"
+  },
+  "BreteAI-Infra/README.md": {
+    "mtime": 1785909837.6061,
+    "ast_hash": "db7cb2b0aff3140be6e499942d0fab2f",
+    "semantic_hash": "db7cb2b0aff3140be6e499942d0fab2f"
+  },
+  "CLAUDE.md": {
+    "mtime": 1786484258.4237545,
+    "ast_hash": "935f6c4d7425a42a89072f05b2d73455",
+    "semantic_hash": "935f6c4d7425a42a89072f05b2d73455"
+  },
+  "README.md": {
+    "mtime": 1785909465.5115364,
+    "ast_hash": "375bf1c489cc4298236793d0e196dad2",
+    "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
+  },
+  "docs/ROADMAP.md": {
+    "mtime": 1786484246.7407327,
+    "ast_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5",
+    "semantic_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5"
+  },
+  "docs/SETUP-GIT.md": {
+    "mtime": 1785909775.573532,
+    "ast_hash": "9d452546e4a5cf1f8317adc5cdc1cff7",
+    "semantic_hash": "9d452546e4a5cf1f8317adc5cdc1cff7"
+  },
+  "docs/requirements.md": {
+    "mtime": 1786482215.2614322,
+    "ast_hash": "49a4960f46a3e9378dca69cb6c5406be",
+    "semantic_hash": "49a4960f46a3e9378dca69cb6c5406be"
+  },
+  "docs/design.md": {
+    "mtime": 1786482165.0212765,
+    "ast_hash": "d97397501f55c322babae2ca4ed680d4",
+    "semantic_hash": "d97397501f55c322babae2ca4ed680d4"
+  },
+  "BreteAI-Infra/db/init/001_schema.sql": {
+    "mtime": 1786483002.1868515,
+    "ast_hash": "dc62e3649a4eca2d86f13a8efe691335",
+    "semantic_hash": "dc62e3649a4eca2d86f13a8efe691335"
+  },
+  "BreteAI-Infra/docker-compose.yml": {
+    "mtime": 1786482981.2937877,
+    "ast_hash": "cf2f84a201aa0e8204f555a713123e06",
+    "semantic_hash": "cf2f84a201aa0e8204f555a713123e06"
+  }
+}
