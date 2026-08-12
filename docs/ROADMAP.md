@@ -60,6 +60,10 @@ Marcar `[x]` al completar.
 - [ ] **Tests:** queries de agregación con seed conocido → números exactos (`design.md` §4-E).
 
 ### Transversal
+- [ ] **Checklist de seguridad al desplegar en el server** (en la PC de dev se aceptó relajado a propósito, auditoría 2026-08-12):
+  - [ ] Password real de Postgres (no `changeme`) + recrear volumen.
+  - [ ] Bindear Postgres solo a localhost/red Docker: `"127.0.0.1:5432:5432"` (no `0.0.0.0`).
+  - [ ] `chmod 600` a los `.env` del server.
 - [ ] CI/CD: GitHub Actions (runner gratis) → auto-deploy SSH sobre Tailscale.
 - [ ] Pipeline CI: `ruff` → unit tests → build imágenes → smoke test → deploy.
 - [ ] Smoke test: `docker compose up` + healthchecks (`/health`, `pg_isready`, `ollama list`).

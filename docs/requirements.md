@@ -177,7 +177,7 @@ Métricas:
 ## 10. Notificaciones / Correo
 
 - **Un solo canal: correo** (no Telegram/WhatsApp/Notion). Es solo el disparador para ir al portal.
-- Destinatario: `jmurillochevez@gmail.com`.
+- Destinatario: **configurable vía `MAIL_TO` en `.env`** (correo personal del usuario; no se versiona en el repo).
 - **Contenido:** top 5-10 ofertas (de la última corrida o de las **no aplicadas** aún), en formato **card**: puesto, score, empresa, modalidad, salario (si se obtuvo), match, y **link directo al portal a esa oferta**.
 - **DECISIÓN: Gmail SMTP con App Password** desde el backend (gratis, mantiene el stack simple).
 

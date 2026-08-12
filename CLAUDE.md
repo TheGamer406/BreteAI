@@ -32,7 +32,7 @@ Estudiante Ing. Desarrollo de Software (UCenfotec, grad. mar-2027), **Junior**. 
 - **Base de datos:** PostgreSQL (mismo server que la GPU). Backup diario ~17:00.
 - **IA:** 100% local con Ollama. Modelo recomendado Qwen 2.5 7B Q4_K_M (tiene Llama 3.2). Latencia aceptada. **Sin API de pago** (Claude Pro $20 NO incluye API).
 - **Frontend:** Next.js, hospedado en el mismo server (red Docker). Login seguro single-user (password hasheada bcrypt/argon2).
-- **Correo:** Gmail SMTP con App Password → `jmurillochevez@gmail.com`. Top 5-10 no aplicadas en cards con link al portal.
+- **Correo:** Gmail SMTP con App Password → destinatario configurable vía `MAIL_TO` en `.env` (no versionar el correo personal en el repo). Top 5-10 no aplicadas en cards con link al portal.
 - **Infra:** servicios separados en red Docker `breteai-net`, multi-repo (`breteai-backend`, `breteai-frontend`, `breteai-infra`), `.env` + GitHub Secrets, volúmenes persistentes.
 - **CI/CD:** GitHub Actions (runners gratis) build/test → auto-deploy SSH sobre Tailscale (`docker compose pull && up -d`). Flujo DevOps estándar (el usuario quiere aprenderlo).
 - **Graphify:** parte del pipeline; relaciones entre y dentro de repos.
