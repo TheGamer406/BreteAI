@@ -15,6 +15,7 @@ Sistema **open source, 100% local**, que busca ofertas de trabajo en fuentes leg
 - **`docs/requirements.md`** — requerimientos completos. **FUENTE DE VERDAD.**
 - **`docs/ROADMAP.md`** — qué va en v1 y qué queda para después (checklist por fases).
 - **`docs/design.md`** — diseño técnico: pipeline por etapas (raw → cola → IA → ofertas), modelo canónico, DDL borrador, estrategia de tests por flujo (Bruno/pytest/testcontainers/MailHog).
+- **`docs/GUIA-IMPLEMENTACION.md`** — índice por fase para implementar código: qué leer, qué archivos tocar y en qué orden. `BreteAI-Backend/app/` y `tests/` ya tienen el esqueleto de Fase 1 (cada archivo con docstring explicando qué implementar ahí). Antes de escribir código de pipeline/conectores, leer este archivo primero.
 - **`config/perfil.example.toon`** — plantilla del perfil (pública, sin datos reales).
 - **`resources/perfil.toon`** — perfil REAL que consume la IA (privado, TOON).
 - **`resources/preguntas.md`** — 76 preguntas respondidas (historial de decisiones).
