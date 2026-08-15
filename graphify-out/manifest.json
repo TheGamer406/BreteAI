@@ -25,8 +25,8 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1786549263.0865633,
-    "ast_hash": "a54a369ae321df7fc68e7018504afbed",
+    "mtime": 1786819152.4836977,
+    "ast_hash": "c89e811de056e24faeae32e6f2d5f666",
     "semantic_hash": ""
   },
   "docs/SETUP-GIT.md": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/config.py": {
-    "mtime": 1786549199.3124843,
-    "ast_hash": "24446fb2112b12b5a6e84efd35297cc1",
+    "mtime": 1786818972.9671524,
+    "ast_hash": "5d01243cc5309569f7263a46ddd6f330",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/__init__.py": {
@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/canonical.py": {
-    "mtime": 1786548452.0910237,
-    "ast_hash": "be7e22888dcd0587a282476ec91efd96",
+    "mtime": 1786818965.249128,
+    "ast_hash": "fc04258b719f899870a6a87b6f3f970d",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/greenhouse.py": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/himalayas.py": {
-    "mtime": 1786548235.2084804,
-    "ast_hash": "bdab42ccf1b31013f3736fc7b0d04bea",
+    "mtime": 1786818672.921152,
+    "ast_hash": "f3624665cc5cdbdbb7f30515af4e8034",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/jobicy.py": {
@@ -145,8 +145,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/db/session.py": {
-    "mtime": 1786547773.2443135,
-    "ast_hash": "7e75aa2b5e2b8a7b60ce99f26dcc9452",
+    "mtime": 1786818683.51619,
+    "ast_hash": "e31657373509efa0ff27e2ab9e44923f",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/main.py": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/conftest.py": {
-    "mtime": 1786485863.1715133,
-    "ast_hash": "3a3637191eeca733ddf5fd54977bf578",
+    "mtime": 1786819050.7003922,
+    "ast_hash": "f85c6d2881633f8fd7dfd66ef2879fd1",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/contract/__init__.py": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/contract/test_connectors_contract.py": {
-    "mtime": 1786485877.905551,
-    "ast_hash": "165c244d6baca72d2983ac5f5943c8f3",
+    "mtime": 1786819073.663462,
+    "ast_hash": "884572f20c797d972451d1b1f2f31569",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/integration/__init__.py": {
@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/integration/test_staging_pipeline.py": {
-    "mtime": 1786485873.227539,
-    "ast_hash": "6683bd30df66a938dfd9771038769c64",
+    "mtime": 1786819108.1985657,
+    "ast_hash": "8bf4f723e4bd850d5a3c426fda52e2e8",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/unit/__init__.py": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/unit/test_canonical_mapping.py": {
-    "mtime": 1786485869.4065292,
-    "ast_hash": "2260372dddfd2859bd261f4625cc63e2",
+    "mtime": 1786818951.3310843,
+    "ast_hash": "424a8ec9ce7076b627059b939bac59d4",
     "semantic_hash": ""
   },
   "BreteAI-Backend/requirements.txt": {
@@ -225,13 +225,58 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/fixtures/README.md": {
-    "mtime": 1786485866.2965212,
-    "ast_hash": "f25f4d6788373d3c6ea83eb91d9d4787",
+    "mtime": 1786819131.5026355,
+    "ast_hash": "8376b2cd49788b8b717b464f309fc2bf",
     "semantic_hash": ""
   },
   "docs/GUIA-IMPLEMENTACION.md": {
     "mtime": 1786485717.221138,
     "ast_hash": "b2b8ea4f85e593cd117964fb9e342788",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/adzuna.json": {
+    "mtime": 1786818903.8629334,
+    "ast_hash": "e71cbf7021c584b500a1f6a21f3a01de",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/arbeitnow.json": {
+    "mtime": 1786818879.9178529,
+    "ast_hash": "4f8352f30a63d407db3d4eebdc2423fd",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/ashby.json": {
+    "mtime": 1786818880.659266,
+    "ast_hash": "23bc84934c8ea94871c39579d67cb859",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/greenhouse.json": {
+    "mtime": 1786818880.5198581,
+    "ast_hash": "3a8f679dcd6efa16475abcdfa3f593ff",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/himalayas.json": {
+    "mtime": 1786818880.1587358,
+    "ast_hash": "ca06bb24886c567e86de63d0baf66d7e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/jobicy.json": {
+    "mtime": 1786818879.980371,
+    "ast_hash": "cdede8b62fe15112b94efc4f794a6a57",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/lever.json": {
+    "mtime": 1786818894.6449037,
+    "ast_hash": "c402aedc4da1c66da975897c9b94d56f",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/remoteok.json": {
+    "mtime": 1786818879.8516698,
+    "ast_hash": "9b22686833a20c11dada9f6cc989da68",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/fixtures/remotive.json": {
+    "mtime": 1786818879.1054711,
+    "ast_hash": "e3198cb78e545b060c7870940a872ea1",
     "semantic_hash": ""
   }
 }
