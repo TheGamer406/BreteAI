@@ -11,21 +11,22 @@ Marcar `[x]` al completar.
 - [x] Repo `breteai-infra`: docker-compose con PostgreSQL + red `breteai-net` + volúmenes.
 - [x] Esquema de DB según `design.md` §3: `corridas`, `ofertas_raw` (staging/cola), `ofertas` + tablas de gestión. Aplicado y verificado en DBeaver (2026-08-11).
 - [ ] Backup diario automático ~17:00 (+ probar restore una vez).
-- [ ] Conectores de fuentes legales:
-  - [ ] Remotive
-  - [ ] RemoteOK
-  - [ ] Arbeitnow
-  - [ ] Jobicy
-  - [ ] Himalayas
-  - [ ] Adzuna (API key gratis, 1k/mes)
-  - [ ] ATS Greenhouse (board tokens de empresas objetivo)
-  - [ ] ATS Lever
-  - [ ] ATS Ashby
-- [ ] Modelo canónico de oferta (mapeo por conector, `design.md` §2).
-- [ ] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR) + registro en tabla `corridas`.
-- [ ] Deduplicación básica (empresa + puesto) + idempotencia (`fuente + id_externo`).
-- [ ] Alerta si un conector se rompe (tests de contrato scheduled, `design.md` §4-A).
-- [ ] **Tests:** fixtures JSON por fuente + unitarios de mapeo; integración con testcontainers; colección Bruno por fuente.
+- [x] Conectores de fuentes legales — implementados y verificados contra las APIs reales (2026-08-12):
+  - [x] Remotive
+  - [x] RemoteOK
+  - [x] Arbeitnow
+  - [x] Jobicy
+  - [x] Himalayas
+  - [x] Adzuna (código listo; pendiente probar con API key real — sin cuenta creada aún)
+  - [x] ATS Greenhouse (verificado en vivo contra board público `gitlab`)
+  - [x] ATS Lever (código listo; sin board activo disponible para probar en vivo)
+  - [x] ATS Ashby (verificado en vivo contra board público `notion`)
+- [x] Modelo canónico de oferta (mapeo por conector, `design.md` §2).
+- [x] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR) + registro en tabla `corridas` — código y config verificados; sin confirmar disparo real de un cron (requiere esperar horario).
+- [x] Idempotencia (`fuente + id_externo`) — verificada con test de integración (corrida duplicada no duplica filas).
+- [ ] Deduplicación semántica adicional (empresa + puesto, entre fuentes distintas) — la idempotencia de arriba es por fuente, esto es dedup cross-fuente, queda pendiente.
+- [x] Alerta si un conector se rompe: `registrar_fallo()` + tests de contrato (`pytest -m contract`) como detección; falta el canal de notificación real (Fase 3, correo).
+- [x] **Tests:** 35 tests (21 unit+integration en CI, 14 de contrato aparte). Fixtures reales de 7/9 fuentes (`tests/fixtures/`), Postgres real vía testcontainers. Pendiente: colección Bruno.
 
 ### Fase 2 — IA
 - [ ] Ollama en el server con Qwen 2.5 7B (Q4_K_M) — comparar vs Llama 3.2.

@@ -15,8 +15,8 @@
     "semantic_hash": "db7cb2b0aff3140be6e499942d0fab2f"
   },
   "CLAUDE.md": {
-    "mtime": 1786485905.9136229,
-    "ast_hash": "cb90830b3914f8e73c79ac41d369fa05",
+    "mtime": 1786549220.125509,
+    "ast_hash": "e405f2e16bb07f1b0d6fc887212d6736",
     "semantic_hash": ""
   },
   "README.md": {
@@ -25,9 +25,9 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1786484246.7407327,
-    "ast_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5",
-    "semantic_hash": "a7c4c49e1e7e0fee686e1d4139eb54c5"
+    "mtime": 1786549263.0865633,
+    "ast_hash": "a54a369ae321df7fc68e7018504afbed",
+    "semantic_hash": ""
   },
   "docs/SETUP-GIT.md": {
     "mtime": 1785909775.573532,
@@ -35,9 +35,9 @@
     "semantic_hash": "9d452546e4a5cf1f8317adc5cdc1cff7"
   },
   "docs/requirements.md": {
-    "mtime": 1786482215.2614322,
-    "ast_hash": "49a4960f46a3e9378dca69cb6c5406be",
-    "semantic_hash": "49a4960f46a3e9378dca69cb6c5406be"
+    "mtime": 1786549218.1085067,
+    "ast_hash": "cbcac96b1bb508923dfdcee7c39aa67b",
+    "semantic_hash": ""
   },
   "docs/design.md": {
     "mtime": 1786482165.0212765,
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/config.py": {
-    "mtime": 1786547766.035295,
-    "ast_hash": "d250d26b4a198c82b7591bec7c2a6f5e",
+    "mtime": 1786549199.3124843,
+    "ast_hash": "24446fb2112b12b5a6e84efd35297cc1",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/__init__.py": {
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/remoteok.py": {
-    "mtime": 1786548160.8872938,
-    "ast_hash": "842f8181c01cf4c42257963843f9626e",
+    "mtime": 1786549237.9805312,
+    "ast_hash": "c8d63911925b61f47cb6361b5036005f",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/remotive.py": {
@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/main.py": {
-    "mtime": 1786491675.7449782,
-    "ast_hash": "4f7f205eeef694996512848f636b441f",
+    "mtime": 1786549206.4734926,
+    "ast_hash": "516f51af778b6612a47797ac400c82a5",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/pipeline/__init__.py": {
@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/requirements.txt": {
-    "mtime": 1786485882.8195636,
-    "ast_hash": "d8ce8b2d2f051a16448e6f8e58667447",
+    "mtime": 1786549190.2564735,
+    "ast_hash": "67602cf54644c9a6a02a8023b8fda13f",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/fixtures/README.md": {
