@@ -56,21 +56,24 @@ Marcar `[x]` al completar.
 
 **Refactor de Fase 1 durante esta fase:** lógica de reintentos extraída a `app/common/retry.py` (compartida entre `connectors/base.py` y `ai/client.py`, DRY); tipo de `Oferta.requisitos`/`beneficios` corregido a `list[str]` (antes `List[dict]`, inconsistente con el schema real).
 
-### Fase 3 — Correo
+### Fase 3 — Correo ✅ (funcional 2026-08-16)
 
-> Esqueleto de archivos creado (2026-08-15): `app/correo/`, tests. Cada archivo tiene el
-> docstring con qué implementar y las decisiones abiertas.
-> Orden de implementación y contexto: **`docs/GUIA-IMPLEMENTACION.md` § Fase 3.**
+> Implementada y verificada de punta a punta contra **MailHog real** (testcontainers en los
+> tests; contenedor manual para la verificación con datos reales) con las 58 ofertas ya
+> analizadas en Fase 2. Gmail real nunca se tocó — la decisión de `requirements.md` §10 sigue
+> siendo el runtime de producción, pendiente solo de la App Password real en el server.
 
-- [ ] **Selección de ofertas** (`correo/seleccion.py`): top N no aplicadas por score, sin repetir lo ya enviado. **Empezar por acá** — define si el correo sirve o se vuelve spam (se manda 4x/día).
-- [ ] Plantilla HTML en cards (`correo/plantilla.py`): puesto, score, empresa, modalidad, salario, match (`score_razon`) + link al portal. CSS inline, sin imágenes externas. Distinguir salario estimado del real.
-- [ ] Gmail SMTP con App Password (`correo/cliente.py`) + config (`SMTP_*`, `MAIL_FROM`, `PORTAL_BASE_URL`). Reusar `app/common/retry.py`.
-- [ ] Orquestación y registro de correos enviados (`correo/envio.py` + tabla `correos`) — alimenta la vista "último correo" del portal (Fase 4). Registrar **después** del envío exitoso, nunca antes.
-- [ ] No mandar correo si no hay ofertas elegibles (`requirements.md` §4.3).
-- [ ] Enganchar el envío al scheduler (paso 3 después del worker de IA).
-- [ ] Canal real de la alerta de conector roto (`requirements.md` §4.5) — hoy `alerts/connector_health.py` solo loguea.
-- [ ] Infra: servicio MailHog para tests (SMTP falso, `design.md` §4-C).
-- [ ] **Tests:** render del template (unitario) + selección con Postgres real + envío contra MailHog. Gmail real nunca en tests.
+- [x] **Selección de ofertas** (`correo/seleccion.py`): no aplicadas (`nueva`+`vista`), con score ≥ 40, sin repetir lo enviado en las últimas 24h (una oferta buena reaparece al día siguiente si sigue sin aplicarse — ni "nunca más" ni spam 4x/día).
+- [x] Plantilla HTML en cards (`correo/plantilla.py`): puesto, score, empresa, modalidad, salario (marca "(estimado)" cuando `salario_estimado=True`), `score_razon` + link al portal. CSS inline, sin imágenes externas, aviso si `similar_a` no es nulo.
+- [x] Gmail SMTP con App Password (`correo/cliente.py`) + config (`SMTP_*`, `MAIL_FROM`, `PORTAL_BASE_URL`). Reusa `app/common/retry.py`.
+- [x] Orquestación y registro de correos enviados (`correo/envio.py` + tabla `correos`). Registrado **después** del envío exitoso — verificado que un SMTP caído no deja fila en `correos`.
+- [x] No manda correo si no hay ofertas elegibles (`requirements.md` §4.3) — verificado.
+- [x] Enganchado al scheduler (paso 3, después del worker de IA, en `scheduler/jobs.py`).
+- [x] Canal real de la alerta de conector roto (`alerts/connector_health.py::fuentes_con_fallas_recurrentes`): fuentes que fallan en 3 corridas seguidas se agregan como sección al pie del correo (no un correo aparte, para no sumar ruido).
+- [x] MailHog vía **testcontainers** en los tests (no en `docker-compose.yml` de Infra — es solo para tests, no debe correr en producción; decisión distinta a la de Ollama en Fase 2, que sí necesita estar siempre arriba).
+- [x] **Tests:** 24 nuevos (12 unit de plantilla + 8 integración de selección con Postgres real + 4 integración de envío contra MailHog real). Total del proyecto: 89 tests (69 en CI por defecto + 14 de contrato + 6 golden).
+
+**Corrida real verificada:** correo enviado con las 10 mejores ofertas ya analizadas (score 85→45), headers y multipart correctos, registrado en `correos`.
 
 ### Fase 4 — Portal (Next.js)
 - [ ] Login seguro (single user, password hasheada).
