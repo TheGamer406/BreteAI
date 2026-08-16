@@ -57,10 +57,20 @@ Marcar `[x]` al completar.
 **Refactor de Fase 1 durante esta fase:** lógica de reintentos extraída a `app/common/retry.py` (compartida entre `connectors/base.py` y `ai/client.py`, DRY); tipo de `Oferta.requisitos`/`beneficios` corregido a `list[str]` (antes `List[dict]`, inconsistente con el schema real).
 
 ### Fase 3 — Correo
-- [ ] Gmail SMTP con App Password.
-- [ ] Correo con top 5-10 (no aplicadas) en cards + link al portal.
-- [ ] Registro de correos enviados (vista "último correo").
-- [ ] **Tests:** render del template (unitario) + envío contra MailHog (`design.md` §4-C). Gmail real nunca en tests.
+
+> Esqueleto de archivos creado (2026-08-15): `app/correo/`, tests. Cada archivo tiene el
+> docstring con qué implementar y las decisiones abiertas.
+> Orden de implementación y contexto: **`docs/GUIA-IMPLEMENTACION.md` § Fase 3.**
+
+- [ ] **Selección de ofertas** (`correo/seleccion.py`): top N no aplicadas por score, sin repetir lo ya enviado. **Empezar por acá** — define si el correo sirve o se vuelve spam (se manda 4x/día).
+- [ ] Plantilla HTML en cards (`correo/plantilla.py`): puesto, score, empresa, modalidad, salario, match (`score_razon`) + link al portal. CSS inline, sin imágenes externas. Distinguir salario estimado del real.
+- [ ] Gmail SMTP con App Password (`correo/cliente.py`) + config (`SMTP_*`, `MAIL_FROM`, `PORTAL_BASE_URL`). Reusar `app/common/retry.py`.
+- [ ] Orquestación y registro de correos enviados (`correo/envio.py` + tabla `correos`) — alimenta la vista "último correo" del portal (Fase 4). Registrar **después** del envío exitoso, nunca antes.
+- [ ] No mandar correo si no hay ofertas elegibles (`requirements.md` §4.3).
+- [ ] Enganchar el envío al scheduler (paso 3 después del worker de IA).
+- [ ] Canal real de la alerta de conector roto (`requirements.md` §4.5) — hoy `alerts/connector_health.py` solo loguea.
+- [ ] Infra: servicio MailHog para tests (SMTP falso, `design.md` §4-C).
+- [ ] **Tests:** render del template (unitario) + selección con Postgres real + envío contra MailHog. Gmail real nunca en tests.
 
 ### Fase 4 — Portal (Next.js)
 - [ ] Login seguro (single user, password hasheada).

@@ -20,7 +20,7 @@
 |---|---|---|---|
 | 1 — Scraping + DB | `BreteAI-Backend`, `BreteAI-Infra` | ✅ **Funcional** (2026-08-12). 411 ofertas reales en `ofertas_raw`, 35 tests. | `design.md` §1-3, `requirements.md` §4 |
 | 2 — IA | `BreteAI-Backend`, `BreteAI-Infra` (servicio Ollama) | ✅ **Funcional** (2026-08-15). Verificado contra LLM real (LM Studio en dev; Ollama es el runtime documentado de producción — mismo cliente, API OpenAI-compatible). | `design.md` §1, §4-B, §5, `requirements.md` §5 |
-| 3 — Correo | `BreteAI-Backend` | Desbloqueada: ya hay ofertas con `score` en `ofertas`. | `design.md` §4-C, `requirements.md` §10 |
+| 3 — Correo | `BreteAI-Backend`, `BreteAI-Infra` (MailHog para tests) | 🔨 **Esqueleto creado, a implementar.** Desbloqueada: ya hay ofertas con `score`. | `design.md` §4-C, `requirements.md` §10 |
 | 4 — Portal | `BreteAI-Frontend` + endpoints en `BreteAI-Backend` | Pendiente | `design.md` §4-D, `requirements.md` §7-8 |
 | 5 — Dashboard | `BreteAI-Frontend` + queries en `BreteAI-Backend` | Pendiente | `design.md` §4-E, `requirements.md` §9 |
 | Fix — deuda técnica | varios | Pendientes de fases cerradas que no bloquean. Ver `ROADMAP.md` § Fase Fix. | — |
@@ -156,9 +156,62 @@ en el código** (no solo implementarla):
 Si una decisión no está en `design.md`/`requirements.md` **y** no está listada acá, es una
 decisión de arquitectura nueva: pará y preguntá antes de asumir.
 
-## Fase 3 — Correo (resumen)
+## Fase 3 — Correo 🔨 A IMPLEMENTAR
 
-Bloqueada hasta Fase 2 (necesita `score` para armar el top 5-10). Ver `design.md` §4-C.
+**Objetivo de la fase:** después de cada corrida, mandar un correo con el top 5-10 de ofertas
+**no aplicadas**, en cards con link directo al portal. Es el disparador para que el usuario
+entre a revisar — no reemplaza al portal, lo alimenta.
+
+**Desbloqueada:** Fase 2 ya deja ofertas con `score`, `resumen` y `score_razon` en `ofertas`.
+
+**Contexto necesario antes de tocar código (leer SOLO esto):**
+- `docs/requirements.md` §10 (contenido del correo, decisión de Gmail SMTP) y §4.3
+  ("si hay resultados → correo": la condición de envío).
+- `docs/design.md` §4-C (los dos niveles de test de este flujo).
+- `docs/requirements.md` §6 (los 7 estados de oferta — hacen falta para definir "no aplicada").
+
+### Orden de implementación
+
+> Los pasos 1-2 no necesitan SMTP ni contenedores: son queries y strings.
+
+1. **`app/correo/seleccion.py`** — qué ofertas van al correo. **Empezar por acá:** es donde
+   está la decisión que define si el correo sirve o se vuelve spam (se manda 4x/día).
+2. **`app/correo/plantilla.py`** — render del HTML (cards) + texto plano.
+3. **Config** — variables SMTP + `PORTAL_BASE_URL` en `app/config.py` y los dos `.env.example`.
+4. **Infra: MailHog** — servicio en el `docker-compose.yml` de `BreteAI-Infra` (o vía
+   testcontainers en los tests, ver `tests/integration/test_correo_envio.py`).
+5. **`app/correo/cliente.py`** — SMTP (stdlib `smtplib`), reusando `app/common/retry.py`.
+6. **`app/correo/envio.py`** — orquesta selección → plantilla → envío → registro en `correos`.
+7. **`app/scheduler/jobs.py`** (modificar) — agregar el paso 3 después del worker de IA.
+8. **`app/alerts/connector_health.py`** (modificar, opcional) — enganchar el canal real de la
+   alerta de conector roto, que hoy solo loguea (`requirements.md` §4.5).
+
+### Tests de esta fase (ver `design.md` §4-C)
+
+- `tests/unit/test_correo_plantilla.py` — render puro, sin red ni DB.
+- `tests/integration/test_correo_seleccion.py` — queries con Postgres real; documenta con
+  tests las decisiones de "qué es no aplicada" y "qué no se repite".
+- `tests/integration/test_correo_envio.py` — envío completo contra **MailHog**. Gmail real nunca.
+
+### No hacer en esta fase
+
+- **No mandar correo si no hay ofertas elegibles.** Un correo vacío 4 veces al día entrena al
+  usuario a filtrarlo.
+- **No marcar como enviadas antes de que el envío salga bien** — si el SMTP falla y ya se
+  registró en `correos`, esas ofertas no vuelven a aparecer nunca.
+- **No presentar salario estimado como si fuera real** (`salario_estimado=True` viene de un
+  promedio calculado en Fase 2, no de la empresa).
+- **No commitear la App Password.** `.env` + GitHub Secrets, como el resto de los secretos.
+- No tocar el portal (Fase 4) — los links del correo apuntan a URLs que todavía no existen, y
+  está bien: se define la URL ahora y el portal la respeta después.
+
+### Decisiones abiertas (resolver al implementar y dejarlo escrito en el código)
+
+- **¿Se re-envían ofertas ya enviadas?** La más importante. Ver las opciones A/B/C en el
+  docstring de `seleccion.py`.
+- **¿Qué estados cuentan como "no aplicada"?** (solo `nueva`, o también `vista`).
+- **¿Score mínimo para entrar al correo?**
+- **¿Cómo se notifica un conector roto?** (correo aparte vs sección al pie).
 
 ## Fase 4 — Portal (resumen)
 
@@ -208,14 +261,19 @@ BreteAI-Backend/
 │   │   └── embeddings.py              ✅ dedup semántico → ofertas.similar_a
 │   ├── feedback/                      ← Fase 2
 │   │   └── criterios.py               ✅ feedback_ia → criterios extra del prompt
+│   ├── correo/                        ← Fase 3
+│   │   ├── seleccion.py               🔨 qué ofertas van al correo — EMPEZAR ACÁ
+│   │   ├── plantilla.py               🔨 render HTML (cards) + texto plano
+│   │   ├── cliente.py                 🔨 SMTP (único punto de salida)
+│   │   └── envio.py                   🔨 orquesta y registra en `correos`
 │   ├── pipeline/
 │   │   ├── staging.py                 ✅ escribe en ofertas_raw
 │   │   ├── runner.py                  ✅ orquesta una corrida de scraping
 │   │   └── worker.py                  ✅ consume la cola: ofertas_raw → IA → ofertas
 │   ├── scheduler/
-│   │   └── jobs.py                    ✅ scraping + worker en cada corrida
+│   │   └── jobs.py                    ✅ scraping + worker (🔨 sumar correo en Fase 3)
 │   └── alerts/
-│       └── connector_health.py        ✅
+│       └── connector_health.py        ✅ (🔨 canal real de alerta en Fase 3)
 ├── tests/
 │   ├── conftest.py                    ✅ Postgres real (testcontainers) + oferta_raw_factory
 │   ├── fixtures/
@@ -224,10 +282,13 @@ BreteAI-Backend/
 │   ├── unit/
 │   │   ├── test_canonical_mapping.py  ✅ 18 tests
 │   │   ├── test_ai_schemas.py         ✅ 11 tests — el más importante de Fase 2
-│   │   └── test_prompts.py            ✅ 7 tests
+│   │   ├── test_prompts.py            ✅ 7 tests
+│   │   └── test_correo_plantilla.py   🔨 render del HTML (Fase 3)
 │   ├── integration/
 │   │   ├── test_staging_pipeline.py   ✅ 3 tests
-│   │   └── test_ai_worker.py          ✅ 6 tests, LLM mockeado
+│   │   ├── test_ai_worker.py          ✅ 6 tests, LLM mockeado
+│   │   ├── test_correo_seleccion.py   🔨 queries de selección (Fase 3)
+│   │   └── test_correo_envio.py       🔨 envío contra MailHog (Fase 3)
 │   ├── contract/
 │   │   └── test_connectors_contract.py ✅ 14 tests (marker `contract`)
 │   └── golden/
