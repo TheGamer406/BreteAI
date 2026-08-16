@@ -7,36 +7,49 @@ Marcar `[x]` al completar.
 
 ## v1 (MVP funcional)
 
-### Fase 1 — Scraping + DB
+### Fase 1 — Scraping + DB ✅ (funcional 2026-08-12)
+
+> Cerrada: el pipeline trae ofertas reales y las persiste en `ofertas_raw`.
+> Lo que quedó pendiente NO bloquea Fase 2 → movido a **Fase Fix** (abajo).
+
 - [x] Repo `breteai-infra`: docker-compose con PostgreSQL + red `breteai-net` + volúmenes.
 - [x] Esquema de DB según `design.md` §3: `corridas`, `ofertas_raw` (staging/cola), `ofertas` + tablas de gestión. Aplicado y verificado en DBeaver (2026-08-11).
-- [ ] Backup diario automático ~17:00 (+ probar restore una vez).
 - [x] Conectores de fuentes legales — implementados y verificados contra las APIs reales (2026-08-12):
   - [x] Remotive
   - [x] RemoteOK
   - [x] Arbeitnow
   - [x] Jobicy
   - [x] Himalayas
-  - [x] Adzuna (código listo; pendiente probar con API key real — sin cuenta creada aún)
+  - [x] Adzuna (código listo; probar con API key real → Fase Fix)
   - [x] ATS Greenhouse (verificado en vivo contra board público `gitlab`)
-  - [x] ATS Lever (código listo; sin board activo disponible para probar en vivo)
+  - [x] ATS Lever (código listo; probar con board activo → Fase Fix)
   - [x] ATS Ashby (verificado en vivo contra board público `notion`)
 - [x] Modelo canónico de oferta (mapeo por conector, `design.md` §2).
-- [x] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR) + registro en tabla `corridas` — código y config verificados; sin confirmar disparo real de un cron (requiere esperar horario).
+- [x] Scheduler 4x/día (05:00, 11:00, 16:00, 22:00 CR) + registro en tabla `corridas` — código y config verificados; confirmar disparo real → Fase Fix.
 - [x] Idempotencia (`fuente + id_externo`) — verificada con test de integración (corrida duplicada no duplica filas).
-- [ ] Deduplicación semántica adicional (empresa + puesto, entre fuentes distintas) — la idempotencia de arriba es por fuente, esto es dedup cross-fuente, queda pendiente.
-- [x] Alerta si un conector se rompe: `registrar_fallo()` + tests de contrato (`pytest -m contract`) como detección; falta el canal de notificación real (Fase 3, correo).
-- [x] **Tests:** 35 tests (21 unit+integration en CI, 14 de contrato aparte). Fixtures reales de 7/9 fuentes (`tests/fixtures/`), Postgres real vía testcontainers. Pendiente: colección Bruno.
+- [x] Alerta si un conector se rompe: `registrar_fallo()` + tests de contrato (`pytest -m contract`) como detección; canal de notificación real = Fase 3 (correo).
+- [x] **Tests:** 35 tests (21 unit+integration en CI, 14 de contrato aparte). Fixtures reales de 7/9 fuentes (`tests/fixtures/`), Postgres real vía testcontainers.
+
+**Corrida real verificada:** 411 ofertas de 5 fuentes guardadas en `ofertas_raw`, sin duplicados entre corridas.
 
 ### Fase 2 — IA
-- [ ] Ollama en el server con Qwen 2.5 7B (Q4_K_M) — comparar vs Llama 3.2.
-- [ ] Pipeline: resumen + extracción de campos + score 0-100 contra `perfil.toon`.
-- [ ] Enriquecimiento "info de segunda mano" (ej: proveedor vs empresa real).
-- [ ] Dedup semántico (embeddings).
-- [ ] Estimación de salario (referencia web) cuando no viene en la oferta.
-- [ ] Feedback simple: correcciones ajustan criterios del prompt (tabla `feedback_ia`).
-- [ ] Validación estricta de la salida del LLM (Pydantic) + reintentos + raw en `error` reprocesable.
-- [ ] **Tests:** unitarios de prompt/validación; worker con mock de Ollama; golden set de scores (solo server, `design.md` §4-B).
+
+> Esqueleto de archivos creado (2026-08-12): `app/ai/`, `app/pipeline/worker.py`,
+> `app/feedback/`, tests. Cada archivo tiene el docstring con qué implementar.
+> Orden de implementación y contexto: **`docs/GUIA-IMPLEMENTACION.md` § Fase 2.**
+
+- [ ] **Validación estricta de la salida del LLM** (`ai/schemas.py`) + reintentos + raw en `error` reprocesable. **Empezar por acá** — es el Riesgo #1 de `design.md` §5.
+- [ ] Ollama corriendo: servicio en el `docker-compose` de Infra + volumen para los modelos. Qwen 2.5 7B (Q4_K_M) — comparar vs Llama 3.2.
+- [ ] Cliente de Ollama (`ai/client.py`) + config nueva (`OLLAMA_HOST`, `OLLAMA_MODEL`, timeout largo).
+- [ ] Carga de `perfil.toon` (`ai/perfil.py`) y armado de prompts (`ai/prompts.py`).
+- [ ] Worker de la cola (`pipeline/worker.py`): `ofertas_raw` pendiente → IA → `ofertas`. Incluye re-mapear el payload crudo a canónico reusando el `_map()` del conector.
+- [ ] Pipeline de análisis: resumen + extracción de campos + score 0-100 contra el perfil.
+- [ ] Enriquecimiento "info de segunda mano" (proveedor vs empresa real) — sale del mismo análisis.
+- [ ] Estimación de salario cuando no viene (`ai/salario.py`) — marcar `salario_estimado=True`, nunca inventar un número.
+- [ ] Dedup semántico con embeddings (`ai/embeddings.py`) → llena `ofertas.similar_a`. Puede ir al final, no bloquea.
+- [ ] Feedback simple: correcciones ajustan criterios del prompt (`feedback/criterios.py` + tabla `feedback_ia`). Puede ir al final.
+- [ ] Enganchar el worker al scheduler (paso 2 después del scraping en `scheduler/jobs.py`).
+- [ ] **Tests:** unitarios de validación de salida y de prompt; worker con mock de Ollama (corre en CI, sin GPU); golden set de scores contra Ollama real (solo server, marker `golden`).
 
 ### Fase 3 — Correo
 - [ ] Gmail SMTP con App Password.
@@ -59,6 +72,21 @@ Marcar `[x]` al completar.
 - [ ] Ubicación (CR vs fuera + países).
 - [ ] Navegación con filtros.
 - [ ] **Tests:** queries de agregación con seed conocido → números exactos (`design.md` §4-E).
+
+### Fase Fix — deuda técnica acumulada
+
+> **Qué es:** pendientes que quedaron de fases ya cerradas y que **no bloquean** avanzar.
+> Se visitan de forma agrupada dentro de un par de fases, no ahora.
+> Al cerrar cada fase, lo que quede sin terminar y no bloquee → se mueve acá con su origen.
+
+**Origen: Fase 1**
+- [ ] Backup diario automático ~17:00 (`pg_dump` en contenedor + volumen) + **probar restore al menos una vez**.
+- [ ] Dedup **cross-fuente** (misma vacante publicada en 2 fuentes distintas → marcar "similar a"). Ojo: distinto de la idempotencia `fuente+id_externo` que ya funciona, y distinto del dedup semántico con embeddings de Fase 2.
+- [ ] Probar Adzuna con API key real (crear cuenta gratis, 1k llamadas/mes) y definir la lista de países a consultar según `perfil.toon` (hoy hardcodeada a `["us","gb"]` en `adzuna.py`).
+- [ ] Probar Lever contra un board con postings activos (los que se probaron estaban vacíos o dan 404) y reemplazar `tests/fixtures/lever.json` por una captura real.
+- [ ] Confirmar disparo real del scheduler (esperar un horario o forzar un trigger de prueba) — hoy solo está verificada la config.
+- [ ] Mapear board tokens/slugs de ATS a nombres legibles de empresa (hoy `empresa` guarda el token, ver TODOs en `greenhouse.py`/`lever.py`/`ashby.py`).
+- [ ] Colección **Bruno** por fuente (cliente API open source, colecciones versionadas en git).
 
 ### Transversal
 - [ ] **Checklist de seguridad al desplegar en el server** (en la PC de dev se aceptó relajado a propósito, auditoría 2026-08-12):

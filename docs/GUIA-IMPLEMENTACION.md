@@ -18,22 +18,24 @@
 
 | Fase | Repo | Estado | Doc de referencia |
 |---|---|---|---|
-| 1 — Scraping + DB | `BreteAI-Backend`, `BreteAI-Infra` | Infra lista (docker-compose + esquema DB aplicado). **Código de conectores: pendiente.** | `design.md` §1-3, `requirements.md` §4 |
-| 2 — IA | `BreteAI-Backend` | Pendiente (bloqueada por Fase 1) | `design.md` §1, §4-B, `requirements.md` §5 |
-| 3 — Correo | `BreteAI-Backend` | Pendiente | `design.md` §4-C, `requirements.md` §10 |
+| 1 — Scraping + DB | `BreteAI-Backend`, `BreteAI-Infra` | ✅ **Funcional** (2026-08-12). 411 ofertas reales en `ofertas_raw`, 35 tests. | `design.md` §1-3, `requirements.md` §4 |
+| 2 — IA | `BreteAI-Backend`, `BreteAI-Infra` (servicio Ollama) | 🔨 **Esqueleto creado, a implementar.** | `design.md` §1, §4-B, §5, `requirements.md` §5 |
+| 3 — Correo | `BreteAI-Backend` | Pendiente (bloqueada por Fase 2: necesita `score`) | `design.md` §4-C, `requirements.md` §10 |
 | 4 — Portal | `BreteAI-Frontend` + endpoints en `BreteAI-Backend` | Pendiente | `design.md` §4-D, `requirements.md` §7-8 |
 | 5 — Dashboard | `BreteAI-Frontend` + queries en `BreteAI-Backend` | Pendiente | `design.md` §4-E, `requirements.md` §9 |
+| Fix — deuda técnica | varios | Pendientes de fases cerradas que no bloquean. Ver `ROADMAP.md` § Fase Fix. | — |
 
 ---
 
-## Fase 1 — Scraping + DB
+## Fase 1 — Scraping + DB ✅ IMPLEMENTADA
 
 **Objetivo de la fase:** cada conector trae ofertas de su fuente, las guarda tal cual en
-`ofertas_raw` (staging), y el scheduler corre esto 4 veces al día. **Todavía NO incluye la IA**
-(eso es Fase 2) — en esta fase `ofertas_raw` se llena, pero se queda ahí esperando.
+`ofertas_raw` (staging), y el scheduler corre esto 4 veces al día. **No incluye la IA**
+(eso es Fase 2) — en esta fase `ofertas_raw` se llena y se queda ahí esperando.
 
-**Ya hecho:** `BreteAI-Infra/docker-compose.yml` + `BreteAI-Infra/db/init/001_schema.sql`
-(las 8 tablas ya existen si corrés `docker compose up -d` en `BreteAI-Infra`).
+**Estado:** funcional y verificada con datos reales. Lo que quedó pendiente está en
+`ROADMAP.md` § Fase Fix. La sección de abajo queda como referencia de cómo está armada
+(útil para entender el patrón antes de escribir Fase 2, que lo replica).
 
 **Contexto necesario antes de tocar código:**
 - `docs/design.md` §1 (diagrama del pipeline por etapas) y §2 (modelo canónico de oferta).
@@ -67,11 +69,83 @@
 
 ---
 
-## Fase 2 — IA (resumen)
+## Fase 2 — IA 🔨 A IMPLEMENTAR
 
-Bloqueada hasta que Fase 1 llene `ofertas_raw` con datos reales. Cuando se implemente:
-leer `design.md` §4-B (validación de la salida del LLM con Pydantic, worker con mock de Ollama)
-y `requirements.md` §5. El worker toma filas `pendiente` de `ofertas_raw` y escribe en `ofertas`.
+**Objetivo de la fase:** el worker toma las filas `pendiente` de `ofertas_raw`, se las manda
+a un LLM local (Ollama) junto con el perfil del candidato, y escribe en `ofertas` la versión
+enriquecida: resumen, campos extraídos y **score de match 0-100**. Con esto el sistema pasa de
+"junté ofertas" a "sé cuáles te sirven".
+
+**Desbloqueada:** Fase 1 ya dejó 400+ ofertas reales en `ofertas_raw` con `estado_proc='pendiente'`.
+
+**Contexto necesario antes de tocar código (leer SOLO esto):**
+- `docs/design.md` §1 (el diagrama del pipeline: dónde encaja el worker) y **§5 Riesgo #1**
+  (por qué la validación de la salida del LLM es lo primero).
+- `docs/design.md` §4-B (la tabla de qué se testea en este flujo).
+- `docs/requirements.md` §5 (tareas de la IA, modelo elegido y por qué).
+- `config/perfil.example.toon` (estructura del perfil que consume el prompt).
+
+### Orden de implementación
+
+> Está pensado para que **cada paso se pueda probar antes de seguir al siguiente**.
+> Los pasos 1-3 no necesitan GPU ni Ollama corriendo.
+
+1. **`app/ai/schemas.py`** — el schema Pydantic de la salida del LLM + `parsear_respuesta_llm()`.
+   **Empezar por acá aunque parezca al revés:** es la mitigación del Riesgo #1 y define el
+   contrato que todo lo demás asume. Se testea entero sin GPU.
+2. **`app/ai/perfil.py`** — cargar y parsear `resources/perfil.toon`.
+3. **`app/ai/prompts.py`** — armar el prompt (perfil + criterios + oferta + schema pedido).
+4. **Infra: servicio Ollama** — agregar al `docker-compose.yml` de `BreteAI-Infra` (imagen
+   `ollama/ollama`, volumen persistente para los modelos, en la red `breteai-net`), y bajar el
+   modelo. Recién acá hace falta la GPU.
+5. **`app/ai/client.py`** — cliente HTTP de Ollama + config nueva en `app/config.py` y en los
+   dos `.env.example`.
+6. **`app/ai/analyzer.py`** — orquesta prompt → LLM → validación → `AnalisisIA`, con reintentos.
+7. **`app/pipeline/worker.py`** — consume la cola y persiste en `ofertas`. Acá está la parte
+   con más detalle fino (re-mapeo del raw, estados, aislamiento de fallos): leer su docstring
+   completo antes de escribir.
+8. **`app/scheduler/jobs.py`** (modificar) — agregar el paso 2: después de la corrida de
+   scraping, correr el worker.
+9. **`app/ai/salario.py`** — estimación cuando la oferta no publica salario.
+10. **`app/ai/embeddings.py`** — dedup semántico → `ofertas.similar_a`. *Puede quedar al final.*
+11. **`app/feedback/criterios.py`** — correcciones del usuario → criterios extra del prompt.
+    *Puede quedar al final* (sin feedback acumulado el sistema funciona igual).
+
+### Tests de esta fase (ver `design.md` §4-B)
+
+- `tests/unit/test_ai_schemas.py` — **el más importante**: JSON válido, con fences, con
+  preámbulo, truncado, score fuera de rango. Sin GPU.
+- `tests/unit/test_prompts.py` — el prompt contiene perfil + criterios; trunca descripciones largas.
+- `tests/integration/test_ai_worker.py` — worker completo, Postgres real (testcontainers) +
+  **Ollama mockeado**. Corre en CI. Reusar las fixtures de `tests/conftest.py`.
+- `tests/golden/test_golden_scores.py` — contra Ollama REAL, marker `golden`, solo en el server.
+- `tests/fixtures/ollama/` — respuestas del LLM capturadas de corridas reales (ver su README).
+
+**Patrón a copiar:** Fase 1 ya resolvió los mismos problemas (template method compartido,
+aislamiento de fallos, mock del punto de entrada externo). Mirar `app/connectors/base.py` y
+`tests/integration/test_staging_pipeline.py` antes de inventar un patrón nuevo.
+
+### No hacer en esta fase (para no salirse de alcance)
+
+- **No re-entrenar ni fine-tunear** el modelo. Decisión cerrada (`requirements.md` §5.1): el
+  feedback solo ajusta criterios del prompt.
+- **No inventar valores.** Si el LLM no da un dato confiable (salario, seniority), va `NULL`.
+  Un dato alucinado contamina el score, el correo y el dashboard.
+- **No cambiar los campos canónicos** que ya trajo Fase 1: si el LLM dice un título distinto
+  al de la fuente, manda el de la fuente.
+- No tocar el correo (Fase 3), ni endpoints/portal (Fase 4).
+
+### Decisiones que quedaron abiertas a propósito
+
+Están anotadas en los docstrings de cada archivo. Al resolverlas, **dejar la decisión escrita
+en el código** (no solo implementarla):
+- Dónde guardar los vectores de embeddings (columna en `ofertas` vs `pgvector`) → `embeddings.py`.
+- De dónde sale la referencia de salario → `salario.py`.
+- Si el worker re-analiza o saltea una oferta ya procesada → `worker.py`.
+- Análisis en lote vs de a una oferta → `analyzer.py`.
+
+Si una decisión no está en `design.md`/`requirements.md` **y** no está listada acá, es una
+decisión de arquitectura nueva: pará y preguntá antes de asumir.
 
 ## Fase 3 — Correo (resumen)
 
@@ -88,44 +162,71 @@ Bloqueada hasta Fase 4 (reusa auth y estructura del portal). Ver `design.md` §4
 
 ---
 
-## Estructura de módulos — Fase 1 (árbol completo)
+## Estructura de módulos (árbol completo)
+
+`✅` = implementado y verificado · `🔨` = esqueleto con docstring, a implementar
 
 ```
 BreteAI-Backend/
 ├── app/
-│   ├── config.py
+│   ├── config.py                      ✅ (🔨 sumar vars de Ollama en Fase 2)
+│   ├── main.py                        ✅
 │   ├── db/
-│   │   ├── models.py
-│   │   └── session.py
-│   ├── connectors/
-│   │   ├── canonical.py       ← modelo canónico (contrato)
-│   │   ├── base.py            ← lógica compartida (DRY)
-│   │   ├── remotive.py
-│   │   ├── remoteok.py
-│   │   ├── arbeitnow.py
-│   │   ├── jobicy.py
-│   │   ├── himalayas.py
-│   │   ├── adzuna.py
-│   │   ├── greenhouse.py
-│   │   ├── lever.py
-│   │   └── ashby.py
+│   │   ├── models.py                  ✅
+│   │   └── session.py                 ✅
+│   ├── connectors/                    ← Fase 1
+│   │   ├── canonical.py               ✅ modelo canónico (contrato)
+│   │   ├── base.py                    ✅ lógica compartida (DRY)
+│   │   ├── remotive.py                ✅
+│   │   ├── remoteok.py                ✅
+│   │   ├── arbeitnow.py               ✅
+│   │   ├── jobicy.py                  ✅
+│   │   ├── himalayas.py               ✅
+│   │   ├── adzuna.py                  ✅
+│   │   ├── greenhouse.py              ✅
+│   │   ├── lever.py                   ✅
+│   │   └── ashby.py                   ✅
+│   ├── ai/                            ← Fase 2
+│   │   ├── schemas.py                 🔨 salida del LLM validada (Riesgo #1) — EMPEZAR ACÁ
+│   │   ├── client.py                  🔨 cliente Ollama (único punto de salida al LLM)
+│   │   ├── perfil.py                  🔨 carga perfil.toon
+│   │   ├── prompts.py                 🔨 armado de prompts
+│   │   ├── analyzer.py                🔨 orquesta 1 oferta: prompt → LLM → validación
+│   │   ├── salario.py                 🔨 estimación cuando no viene
+│   │   └── embeddings.py              🔨 dedup semántico → ofertas.similar_a
+│   ├── feedback/                      ← Fase 2
+│   │   └── criterios.py               🔨 feedback_ia → criterios extra del prompt
 │   ├── pipeline/
-│   │   ├── staging.py
-│   │   └── runner.py
+│   │   ├── staging.py                 ✅ escribe en ofertas_raw
+│   │   ├── runner.py                  ✅ orquesta una corrida de scraping
+│   │   └── worker.py                  🔨 consume la cola: ofertas_raw → IA → ofertas
 │   ├── scheduler/
-│   │   └── jobs.py
+│   │   └── jobs.py                    ✅ (🔨 sumar el paso del worker en Fase 2)
 │   └── alerts/
-│       └── connector_health.py
+│       └── connector_health.py        ✅
 ├── tests/
+│   ├── conftest.py                    ✅ Postgres real vía testcontainers
 │   ├── fixtures/
+│   │   ├── <fuente>.json              ✅ respuestas reales de las 9 fuentes
+│   │   └── ollama/                    🔨 respuestas del LLM (ver su README)
 │   ├── unit/
+│   │   ├── test_canonical_mapping.py  ✅ 18 tests
+│   │   ├── test_ai_schemas.py         🔨 el test más importante de Fase 2
+│   │   └── test_prompts.py            🔨
 │   ├── integration/
-│   └── contract/
-└── requirements.txt
+│   │   ├── test_staging_pipeline.py   ✅ 3 tests
+│   │   └── test_ai_worker.py          🔨 worker con Ollama mockeado
+│   ├── contract/
+│   │   └── test_connectors_contract.py ✅ 14 tests (marker `contract`)
+│   └── golden/
+│       └── test_golden_scores.py      🔨 contra Ollama real (marker `golden`, solo server)
+├── pytest.ini                         ✅ (🔨 registrar marker `golden` en Fase 2)
+└── requirements.txt                   ✅ versiones pineadas
 ```
 
-Cada archivo de esa lista ya existe como esqueleto con un docstring — abrilo antes de escribir,
-el comentario de arriba tiene el detalle específico de qué va ahí.
+Cada archivo `🔨` ya existe con un docstring — **abrilo antes de escribir**, el comentario de
+arriba tiene el detalle específico de qué va ahí, qué NO duplicar y qué decisiones quedaron
+abiertas.
 
 ---
 
