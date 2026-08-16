@@ -1,16 +1,16 @@
 # Graph Report - BreteAI  (2026-08-15)
 
 ## Corpus Check
-- 77 files · ~47,771 words
+- 85 files · ~50,487 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 96 nodes · 106 edges · 19 communities (7 shown, 12 thin omitted)
+- 100 nodes · 110 edges · 20 communities (8 shown, 12 thin omitted)
 - Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `01f81f89`
+- Built from commit: `75bbdde3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,6 +18,7 @@
 - Capa de IA y Perfil
 - Backend, DB e Infra
 - Pipeline por Etapas (Staging)
+- Fase 2 — IA ✅ IMPLEMENTADA
 - Docker Compose de Postgres
 - Alcance y Backlog
 - Pruebas, CI/CD y Graphify
@@ -43,9 +44,9 @@
 5. `Fase 2 — IA` - 6 edges
 6. `Servicio db (Postgres 16-alpine)` - 6 edges
 7. `Fase 2 — IA ✅ IMPLEMENTADA` - 5 edges
-8. `Tabla ofertas_raw (staging/cola)` - 5 edges
-9. `Entorno local de desarrollo (PC del usuario)` - 5 edges
-10. `Fase 1 — Scraping + DB ✅ IMPLEMENTADA` - 4 edges
+8. `Fase 3 — Correo 🔨 A IMPLEMENTAR` - 5 edges
+9. `Tabla ofertas_raw (staging/cola)` - 5 edges
+10. `Entorno local de desarrollo (PC del usuario)` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Reglas de negocio clave` --semantically_similar_to--> `Principio: solo fuentes legales`  [INFERRED] [semantically similar]
@@ -67,7 +68,7 @@
 - **Herramientas de la estrategia de pruebas** — docs_design_estrategia_de_pruebas, docs_requirements_bruno, docs_design_mailhog, docs_design_testcontainers [EXTRACTED 1.00]
 - **Componentes del proyecto (submódulos)** — breteai_backend_readme_backend, breteai_frontend_readme_frontend, breteai_infra_readme_infra [EXTRACTED 0.90]
 
-## Communities (19 total, 12 thin omitted)
+## Communities (20 total, 12 thin omitted)
 
 ### Community 0 - "Capa de IA y Perfil"
 Cohesion: 0.17
@@ -80,6 +81,10 @@ Nodes (17): BreteAI-Backend, BreteAI-Frontend, BreteAI-Infra, Backup diario pg_d
 ### Community 2 - "Pipeline por Etapas (Staging)"
 Cohesion: 0.25
 Nodes (9): BreteAI (contexto del proyecto), Idempotencia (UNIQUE fuente + id_externo), Modelo canónico de oferta, Pipeline por etapas (diseño), Scheduler (APScheduler, 4x/día), Tabla corridas, Tabla ofertas_raw (staging/cola), Pipeline por etapas (staging) (+1 more)
+
+### Community 3 - "Fase 2 — IA ✅ IMPLEMENTADA"
+Cohesion: 0.40
+Nodes (5): Decisiones que quedaron abiertas a propósito, Fase 2 — IA ✅ IMPLEMENTADA, No hacer en esta fase (para no salirse de alcance), Orden de implementación, Tests de esta fase (ver `design.md` §4-B)
 
 ### Community 4 - "Docker Compose de Postgres"
 Cohesion: 0.26
@@ -95,10 +100,10 @@ Nodes (6): Integración graphify, Estrategia de pruebas por flujo, Bruno (client
 
 ### Community 7 - "Entorno Local de Desarrollo"
 Cohesion: 0.12
-Nodes (16): Cómo usar esta guía, Decisiones que quedaron abiertas a propósito, Estructura de módulos (árbol completo), Fase 1 — Scraping + DB ✅ IMPLEMENTADA, Fase 2 — IA ✅ IMPLEMENTADA, Fase 3 — Correo (resumen), Fase 4 — Portal (resumen), Fase 5 — Dashboard (resumen) (+8 more)
+Nodes (15): Cómo usar esta guía, Decisiones abiertas (resolver al implementar y dejarlo escrito en el código), Estructura de módulos (árbol completo), Fase 1 — Scraping + DB ✅ IMPLEMENTADA, Fase 3 — Correo 🔨 A IMPLEMENTAR, Fase 4 — Portal (resumen), Fase 5 — Dashboard (resumen), Guía de Implementación - BreteAI (+7 more)
 
 ## Knowledge Gaps
-- **38 isolated node(s):** `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)`, `No hacer en esta fase (para no salirse de alcance)`, `Orden de implementación` (+33 more)
+- **41 isolated node(s):** `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)`, `No hacer en esta fase (para no salirse de alcance)`, `Orden de implementación` (+36 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -106,14 +111,14 @@ Nodes (16): Cómo usar esta guía, Decisiones que quedaron abiertas a propósito
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Fase 1 — Scraping + DB` connect `Docker Compose de Postgres` to `Backend, DB e Infra`, `Pipeline por Etapas (Staging)`, `Pruebas, CI/CD y Graphify`?**
-  _High betweenness centrality (0.213) - this node is a cross-community bridge._
+  _High betweenness centrality (0.196) - this node is a cross-community bridge._
 - **Why does `v1 (MVP funcional)` connect `Backend, DB e Infra` to `Capa de IA y Perfil`, `Pipeline por Etapas (Staging)`, `Docker Compose de Postgres`, `Pruebas, CI/CD y Graphify`?**
-  _High betweenness centrality (0.207) - this node is a cross-community bridge._
+  _High betweenness centrality (0.191) - this node is a cross-community bridge._
 - **Why does `Tabla ofertas (estructura fija)` connect `Capa de IA y Perfil` to `Pipeline por Etapas (Staging)`, `Alcance y Backlog`?**
-  _High betweenness centrality (0.134) - this node is a cross-community bridge._
+  _High betweenness centrality (0.123) - this node is a cross-community bridge._
 - **What connects `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)` to the rest of the system?**
-  _38 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _41 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Backend, DB e Infra` be split into smaller, more focused modules?**
   _Cohesion score 0.1323529411764706 - nodes in this community are weakly interconnected._
 - **Should `Entorno Local de Desarrollo` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._

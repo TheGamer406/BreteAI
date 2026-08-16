@@ -179,8 +179,8 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_2_ia_implementada",
-      "community": 7,
-      "community_name": "Entorno Local de Desarrollo",
+      "community": 3,
+      "community_name": "Fase 2 \u2014 IA \u2705 IMPLEMENTADA",
       "norm_label": "fase 2 \u2014 ia \u2705 implementada"
     },
     {
@@ -190,8 +190,8 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "docs_guia_implementacion_orden_de_implementaci\u00f3n",
-      "community": 7,
-      "community_name": "Entorno Local de Desarrollo",
+      "community": 3,
+      "community_name": "Fase 2 \u2014 IA \u2705 IMPLEMENTADA",
       "norm_label": "orden de implementacion"
     },
     {
@@ -201,8 +201,8 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_b",
-      "community": 7,
-      "community_name": "Entorno Local de Desarrollo",
+      "community": 3,
+      "community_name": "Fase 2 \u2014 IA \u2705 IMPLEMENTADA",
       "norm_label": "tests de esta fase (ver `design.md` \u00a74-b)"
     },
     {
@@ -212,8 +212,8 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "docs_guia_implementacion_no_hacer_en_esta_fase_para_no_salirse_de_alcance_137",
-      "community": 7,
-      "community_name": "Entorno Local de Desarrollo",
+      "community": 3,
+      "community_name": "Fase 2 \u2014 IA \u2705 IMPLEMENTADA",
       "norm_label": "no hacer en esta fase (para no salirse de alcance)"
     },
     {
@@ -223,26 +223,70 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "docs_guia_implementacion_decisiones_que_quedaron_abiertas_a_prop\u00f3sito",
-      "community": 7,
-      "community_name": "Entorno Local de Desarrollo",
+      "community": 3,
+      "community_name": "Fase 2 \u2014 IA \u2705 IMPLEMENTADA",
       "norm_label": "decisiones que quedaron abiertas a proposito"
     },
     {
-      "label": "Fase 3 \u2014 Correo (resumen)",
+      "label": "Fase 3 \u2014 Correo \ud83d\udd28 A IMPLEMENTAR",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
       "source_location": "L159",
       "_origin": "ast",
-      "id": "docs_guia_implementacion_fase_3_correo_resumen",
+      "id": "docs_guia_implementacion_fase_3_correo_a_implementar",
       "community": 7,
       "community_name": "Entorno Local de Desarrollo",
-      "norm_label": "fase 3 \u2014 correo (resumen)"
+      "norm_label": "fase 3 \u2014 correo \ud83d\udd28 a implementar"
+    },
+    {
+      "label": "Orden de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L173",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_orden_de_implementaci\u00f3n_173",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "orden de implementacion"
+    },
+    {
+      "label": "Tests de esta fase (ver `design.md` \u00a74-C)",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L189",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_c",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "tests de esta fase (ver `design.md` \u00a74-c)"
+    },
+    {
+      "label": "No hacer en esta fase",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L196",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_no_hacer_en_esta_fase",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "no hacer en esta fase"
+    },
+    {
+      "label": "Decisiones abiertas (resolver al implementar y dejarlo escrito en el c\u00f3digo)",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_decisiones_abiertas_resolver_al_implementar_y_dejarlo_escrito_en_el_c\u00f3digo",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "decisiones abiertas (resolver al implementar y dejarlo escrito en el codigo)"
     },
     {
       "label": "Fase 4 \u2014 Portal (resumen)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L163",
+      "source_location": "L216",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_4_portal_resumen",
       "community": 7,
@@ -253,7 +297,7 @@
       "label": "Fase 5 \u2014 Dashboard (resumen)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L168",
+      "source_location": "L221",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_5_dashboard_resumen",
       "community": 7,
@@ -264,7 +308,7 @@
       "label": "Estructura de m\u00f3dulos (\u00e1rbol completo)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L174",
+      "source_location": "L227",
       "_origin": "ast",
       "id": "docs_guia_implementacion_estructura_de_m\u00f3dulos_\u00e1rbol_completo",
       "community": 7,
@@ -275,7 +319,7 @@
       "label": "Principios transversales (aplican a TODAS las fases)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L244",
+      "source_location": "L305",
       "_origin": "ast",
       "id": "docs_guia_implementacion_principios_transversales_aplican_a_todas_las_fases",
       "community": 7,
@@ -1524,7 +1568,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L174",
+      "source_location": "L227",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1561,14 +1605,14 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
-      "target": "docs_guia_implementacion_fase_3_correo_resumen",
+      "target": "docs_guia_implementacion_fase_3_correo_a_implementar",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L163",
+      "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1579,7 +1623,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L168",
+      "source_location": "L221",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1590,7 +1634,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L244",
+      "source_location": "L305",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1672,6 +1716,50 @@
       "_origin": "ast",
       "source": "docs_guia_implementacion_fase_2_ia_implementada",
       "target": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_b",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_3_correo_a_implementar",
+      "target": "docs_guia_implementacion_decisiones_abiertas_resolver_al_implementar_y_dejarlo_escrito_en_el_c\u00f3digo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L196",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_3_correo_a_implementar",
+      "target": "docs_guia_implementacion_no_hacer_en_esta_fase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L173",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_3_correo_a_implementar",
+      "target": "docs_guia_implementacion_orden_de_implementaci\u00f3n_173",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L189",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_3_correo_a_implementar",
+      "target": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_c",
       "confidence_score": 1.0
     },
     {
@@ -2737,5 +2825,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "01f81f89e4507a08fa1f6de6beb7a26d14323a86"
+  "built_at_commit": "75bbdde3daba2fa6592e1a9f38963e6b34741a67"
 }

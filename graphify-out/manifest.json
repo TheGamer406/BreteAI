@@ -25,8 +25,8 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1786857662.0346615,
-    "ast_hash": "862c237f1535628a1e4c005db4184124",
+    "mtime": 1786858404.5066922,
+    "ast_hash": "0ed25c91e21a8bab8abf9a66fd9acbe9",
     "semantic_hash": ""
   },
   "docs/SETUP-GIT.md": {
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "docs/GUIA-IMPLEMENTACION.md": {
-    "mtime": 1786857473.1145687,
-    "ast_hash": "4c42fcd1a4fccc5b7d6a80d2bc137bdf",
+    "mtime": 1786858390.5476675,
+    "ast_hash": "8e98feaad5d6de0c2021cb146efbbf70",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/fixtures/adzuna.json": {
@@ -412,6 +412,46 @@
   "BreteAI-Backend/tests/fixtures/ollama/respuesta_truncada.txt": {
     "mtime": 1786856944.438398,
     "ast_hash": "e71369c63d9db84e1ceb72d61f857b20",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/correo/__init__.py": {
+    "mtime": 1786858239.7694092,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/correo/cliente.py": {
+    "mtime": 1786858288.4094906,
+    "ast_hash": "7d8c3b8f9600ec1d4006d8bc0a1f02cb",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/correo/envio.py": {
+    "mtime": 1786858301.9025137,
+    "ast_hash": "6fa5d1541f6339d6908c23e25831434a",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/correo/plantilla.py": {
+    "mtime": 1786858273.765466,
+    "ast_hash": "68065e04b6513f4288e614eea2878647",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/correo/seleccion.py": {
+    "mtime": 1786858256.0314362,
+    "ast_hash": "23c3d15ef7cfc93c588a4ee0982f1a89",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/integration/test_correo_envio.py": {
+    "mtime": 1786858334.8075702,
+    "ast_hash": "5d102766b8041eccb07a5f0aeb2a5434",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/integration/test_correo_seleccion.py": {
+    "mtime": 1786858321.351547,
+    "ast_hash": "b643362aff8259a78a866487f05973ad",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/unit/test_correo_plantilla.py": {
+    "mtime": 1786858314.3035347,
+    "ast_hash": "367a2164e4d313450ec538951f1fac94",
     "semantic_hash": ""
   }
 }
