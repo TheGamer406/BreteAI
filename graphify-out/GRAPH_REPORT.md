@@ -1,7 +1,7 @@
 # Graph Report - BreteAI  (2026-08-15)
 
 ## Corpus Check
-- 71 files · ~43,801 words
+- 77 files · ~47,771 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `201310fc`
+- Built from commit: `01f81f89`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,7 +42,7 @@
 4. `v1 (MVP funcional)` - 7 edges
 5. `Fase 2 — IA` - 6 edges
 6. `Servicio db (Postgres 16-alpine)` - 6 edges
-7. `Fase 2 — IA 🔨 A IMPLEMENTAR` - 5 edges
+7. `Fase 2 — IA ✅ IMPLEMENTADA` - 5 edges
 8. `Tabla ofertas_raw (staging/cola)` - 5 edges
 9. `Entorno local de desarrollo (PC del usuario)` - 5 edges
 10. `Fase 1 — Scraping + DB ✅ IMPLEMENTADA` - 4 edges
@@ -95,7 +95,7 @@ Nodes (6): Integración graphify, Estrategia de pruebas por flujo, Bruno (client
 
 ### Community 7 - "Entorno Local de Desarrollo"
 Cohesion: 0.12
-Nodes (16): Cómo usar esta guía, Decisiones que quedaron abiertas a propósito, Estructura de módulos (árbol completo), Fase 1 — Scraping + DB ✅ IMPLEMENTADA, Fase 2 — IA 🔨 A IMPLEMENTAR, Fase 3 — Correo (resumen), Fase 4 — Portal (resumen), Fase 5 — Dashboard (resumen) (+8 more)
+Nodes (16): Cómo usar esta guía, Decisiones que quedaron abiertas a propósito, Estructura de módulos (árbol completo), Fase 1 — Scraping + DB ✅ IMPLEMENTADA, Fase 2 — IA ✅ IMPLEMENTADA, Fase 3 — Correo (resumen), Fase 4 — Portal (resumen), Fase 5 — Dashboard (resumen) (+8 more)
 
 ## Knowledge Gaps
 - **38 isolated node(s):** `Cómo usar esta guía`, `Orden de implementación (`BreteAI-Backend/app/`)`, `Tests de esta fase (ver `design.md` §4-A)`, `No hacer en esta fase (para no salirse de alcance)`, `Orden de implementación` (+33 more)
