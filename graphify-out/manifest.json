@@ -5,9 +5,9 @@
     "semantic_hash": "7617179ed55db66dbfb43ec0f51a1eec"
   },
   "BreteAI-Frontend/README.md": {
-    "mtime": 1785909837.1571002,
-    "ast_hash": "c181b9f309e91cb385730d811509b6e8",
-    "semantic_hash": "c181b9f309e91cb385730d811509b6e8"
+    "mtime": 1786908156.2784696,
+    "ast_hash": "b4f7a21e3f9e3ec8708564a83d86059c",
+    "semantic_hash": ""
   },
   "BreteAI-Infra/README.md": {
     "mtime": 1785909837.6061,
@@ -25,9 +25,9 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1786903822.1312935,
-    "ast_hash": "9545ac27d00b7e33f3103dd285aade8d",
-    "semantic_hash": "9545ac27d00b7e33f3103dd285aade8d"
+    "mtime": 1786908254.4477756,
+    "ast_hash": "72eb4fb9a9afe14c3f878a1acbd5b30d",
+    "semantic_hash": ""
   },
   "docs/SETUP-GIT.md": {
     "mtime": 1785909775.573532,
@@ -230,9 +230,9 @@
     "semantic_hash": "8376b2cd49788b8b717b464f309fc2bf"
   },
   "docs/GUIA-IMPLEMENTACION.md": {
-    "mtime": 1786903880.4143326,
-    "ast_hash": "186aaf122778c1d1136fc5696d7ca762",
-    "semantic_hash": "186aaf122778c1d1136fc5696d7ca762"
+    "mtime": 1786908237.8867245,
+    "ast_hash": "86566036e13eda820f1e22e6414a3165",
+    "semantic_hash": ""
   },
   "BreteAI-Backend/tests/fixtures/adzuna.json": {
     "mtime": 1786818903.8629334,
@@ -453,5 +453,130 @@
     "mtime": 1786903593.423073,
     "ast_hash": "c3e3e567702993bf88511da33bf1b7ec",
     "semantic_hash": "c3e3e567702993bf88511da33bf1b7ec"
+  },
+  "BreteAI-Backend/app/api/__init__.py": {
+    "mtime": 1786907866.4405158,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/deps.py": {
+    "mtime": 1786907901.982638,
+    "ast_hash": "b6b8b22ef6fe693a9e10a1306587268d",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/routers/__init__.py": {
+    "mtime": 1786907905.5856502,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/routers/auth.py": {
+    "mtime": 1786907915.560684,
+    "ast_hash": "4127403183413de0002f95ccb1aadb9f",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/routers/correos.py": {
+    "mtime": 1786907938.3997612,
+    "ast_hash": "8cd94679d527916bdfc5e8eebda1d5c9",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/routers/ofertas.py": {
+    "mtime": 1786907929.5497313,
+    "ast_hash": "eb368e5b1427615585be140e1176863e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/schemas.py": {
+    "mtime": 1786907896.71962,
+    "ast_hash": "c5c87e294beae83f104c6849e2668ee7",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/app/api/seguridad.py": {
+    "mtime": 1786907880.121563,
+    "ast_hash": "5f0b61316cba31f815669808df3dcedc",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/integration/test_api_auth.py": {
+    "mtime": 1786908113.0373325,
+    "ast_hash": "3e0714fb150e302a9a39db40b5d15010",
+    "semantic_hash": ""
+  },
+  "BreteAI-Backend/tests/integration/test_api_ofertas.py": {
+    "mtime": 1786908121.8873606,
+    "ast_hash": "e8bb0c7948058f333bcbe15a119382ff",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/app/layout.tsx": {
+    "mtime": 1786908061.0551655,
+    "ast_hash": "13dd77c1390462201834ba612f47b5a5",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/app/login/page.tsx": {
+    "mtime": 1786908095.4462762,
+    "ast_hash": "334ef0bfa7bce7139675b62e29ee5f41",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/app/ofertas/[id]/page.tsx": {
+    "mtime": 1786908084.7222419,
+    "ast_hash": "7ff64f62f23e734476d14edbe707fd1c",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/app/ofertas/page.tsx": {
+    "mtime": 1786908073.3572052,
+    "ast_hash": "2f12aaf22783da4ffe41940d94d91025",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/app/ultimo-correo/page.tsx": {
+    "mtime": 1786908102.0022972,
+    "ast_hash": "77c3fbc05cca1118705ee981b55a37d4",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ofertas/BadgeScore.tsx": {
+    "mtime": 1786907996.7179554,
+    "ast_hash": "6930250b3c33790cee1f39579b869e0b",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ofertas/Filtros.tsx": {
+    "mtime": 1786908010.6500013,
+    "ast_hash": "8a602b8b88ef6cd9a8816b4f010fa578",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ofertas/TablaOfertas.tsx": {
+    "mtime": 1786907986.2479208,
+    "ast_hash": "a080ffa541857b6735879e3d699e629c",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ticket/Adjuntos.tsx": {
+    "mtime": 1786908040.4590988,
+    "ast_hash": "ac1d1afb152962e0eef2fea997a3151e",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ticket/Comentarios.tsx": {
+    "mtime": 1786908031.8980708,
+    "ast_hash": "2df5d461808998f72ccc5fd136b7b473",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ticket/PanelEstado.tsx": {
+    "mtime": 1786908019.7850313,
+    "ast_hash": "d251e81ac2330cfe4cabd82be8e70967",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/components/ui/ToggleTema.tsx": {
+    "mtime": 1786908053.5001411,
+    "ast_hash": "beb3716a2c4c30b0d7e0ae5b7906453d",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/lib/api.ts": {
+    "mtime": 1786907955.335818,
+    "ast_hash": "88a0a5535fb3282f6301d450e1c9acb3",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/lib/tipos.ts": {
+    "mtime": 1786907964.2518477,
+    "ast_hash": "f27320908a8371383a5f02a70f2417d6",
+    "semantic_hash": ""
+  },
+  "BreteAI-Frontend/tests/README.md": {
+    "mtime": 1786908137.42941,
+    "ast_hash": "d9580d06b30c1728cf6267c68ebd3ac9",
+    "semantic_hash": ""
   }
 }
