@@ -25,8 +25,8 @@
     "semantic_hash": "375bf1c489cc4298236793d0e196dad2"
   },
   "docs/ROADMAP.md": {
-    "mtime": 1786858404.5066922,
-    "ast_hash": "0ed25c91e21a8bab8abf9a66fd9acbe9",
+    "mtime": 1786903822.1312935,
+    "ast_hash": "9545ac27d00b7e33f3103dd285aade8d",
     "semantic_hash": ""
   },
   "docs/SETUP-GIT.md": {
@@ -65,13 +65,13 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/alerts/connector_health.py": {
-    "mtime": 1786548419.486942,
-    "ast_hash": "00bde3b142adcb46a30fc3009f272dff",
+    "mtime": 1786903541.0330036,
+    "ast_hash": "c7c343dc0c33c0acb3a2feb3a5134749",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/config.py": {
-    "mtime": 1786856300.851158,
-    "ast_hash": "c27b09e1a65c08a3d64a0ed0356e9664",
+    "mtime": 1786903522.0819764,
+    "ast_hash": "77b48f7a020eec67619b3d627e58e7c6",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/connectors/__init__.py": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/scheduler/jobs.py": {
-    "mtime": 1786856705.5721965,
-    "ast_hash": "d9872da8a1c9705298c2003dfe6cf714",
+    "mtime": 1786903562.0950325,
+    "ast_hash": "b826c83bcf70daee1752dfe9cf0a0aa0",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/__init__.py": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/conftest.py": {
-    "mtime": 1786856891.5456786,
-    "ast_hash": "a86ef2dbbd1963d0262b01816c34630b",
+    "mtime": 1786903690.8531818,
+    "ast_hash": "cc730fd27898b206023ea5eafe86e414",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/contract/__init__.py": {
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "docs/GUIA-IMPLEMENTACION.md": {
-    "mtime": 1786858390.5476675,
-    "ast_hash": "8e98feaad5d6de0c2021cb146efbbf70",
+    "mtime": 1786903880.4143326,
+    "ast_hash": "186aaf122778c1d1136fc5696d7ca762",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/fixtures/adzuna.json": {
@@ -420,38 +420,38 @@
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/correo/cliente.py": {
-    "mtime": 1786858288.4094906,
-    "ast_hash": "7d8c3b8f9600ec1d4006d8bc0a1f02cb",
+    "mtime": 1786903530.9729893,
+    "ast_hash": "6f96f9a2f449f15a3eaf18954e9b01ab",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/correo/envio.py": {
-    "mtime": 1786858301.9025137,
-    "ast_hash": "6fa5d1541f6339d6908c23e25831434a",
+    "mtime": 1786903553.3240206,
+    "ast_hash": "acf887628a983dd803def49673fe2c08",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/correo/plantilla.py": {
-    "mtime": 1786858273.765466,
-    "ast_hash": "68065e04b6513f4288e614eea2878647",
+    "mtime": 1786903515.4729667,
+    "ast_hash": "d232b9cb10ac3f73e06a35da4a5be769",
     "semantic_hash": ""
   },
   "BreteAI-Backend/app/correo/seleccion.py": {
-    "mtime": 1786858256.0314362,
-    "ast_hash": "23c3d15ef7cfc93c588a4ee0982f1a89",
+    "mtime": 1786903496.9959385,
+    "ast_hash": "feb4a594d9cf4df574d4b3272c77eb34",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/integration/test_correo_envio.py": {
-    "mtime": 1786858334.8075702,
-    "ast_hash": "5d102766b8041eccb07a5f0aeb2a5434",
+    "mtime": 1786903616.534101,
+    "ast_hash": "4a2016f264700ea0a4e558aedf13e10a",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/integration/test_correo_seleccion.py": {
-    "mtime": 1786858321.351547,
-    "ast_hash": "b643362aff8259a78a866487f05973ad",
+    "mtime": 1786903605.7480881,
+    "ast_hash": "2c45b0ab8be8a4929a17cff847cf39c9",
     "semantic_hash": ""
   },
   "BreteAI-Backend/tests/unit/test_correo_plantilla.py": {
-    "mtime": 1786858314.3035347,
-    "ast_hash": "367a2164e4d313450ec538951f1fac94",
+    "mtime": 1786903593.423073,
+    "ast_hash": "c3e3e567702993bf88511da33bf1b7ec",
     "semantic_hash": ""
   }
 }
