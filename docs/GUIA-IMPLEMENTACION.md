@@ -21,7 +21,7 @@
 | 1 — Scraping + DB | `BreteAI-Backend`, `BreteAI-Infra` | ✅ **Funcional** (2026-08-12). 411 ofertas reales en `ofertas_raw`, 35 tests. | `design.md` §1-3, `requirements.md` §4 |
 | 2 — IA | `BreteAI-Backend`, `BreteAI-Infra` (servicio Ollama) | ✅ **Funcional** (2026-08-15). Verificado contra LLM real (LM Studio en dev; Ollama es el runtime documentado de producción — mismo cliente, API OpenAI-compatible). | `design.md` §1, §4-B, §5, `requirements.md` §5 |
 | 3 — Correo | `BreteAI-Backend` | ✅ **Funcional** (2026-08-16). Verificado contra MailHog real, correo enviado con datos reales de Fase 2. | `design.md` §4-C, `requirements.md` §10 |
-| 4 — Portal | `BreteAI-Frontend` + endpoints en `BreteAI-Backend` | Desbloqueada: ya hay ofertas, score, y correos registrados. | `design.md` §4-D, `requirements.md` §7-8 |
+| 4 — Portal | `BreteAI-Backend` (API) + `BreteAI-Frontend` (Next.js) | 🔨 **Esqueleto creado, a implementar.** Dirección de diseño ya decidida (`styles/tokens.css`). | `design.md` §4-D, `requirements.md` §7-8 |
 | 5 — Dashboard | `BreteAI-Frontend` + queries en `BreteAI-Backend` | Pendiente | `design.md` §4-E, `requirements.md` §9 |
 | Fix — deuda técnica | varios | Pendientes de fases cerradas que no bloquean. Ver `ROADMAP.md` § Fase Fix. | — |
 
@@ -225,10 +225,88 @@ patrón para "reenviar correo" y la vista "último correo" del portal).
   aparte), y solo si la fuente falla en **3 corridas seguidas**
   (`connector_health.fuentes_con_fallas_recurrentes`) — un fallo de red puntual no alerta.
 
-## Fase 4 — Portal (resumen)
+## Fase 4 — Portal 🔨 A IMPLEMENTAR
 
-Bloqueada hasta tener datos reales en `ofertas`. Ver `design.md` §4-D — el contrato de API
-se define con una colección Bruno antes de tocar el frontend.
+**Objetivo de la fase:** el portal donde se revisan y gestionan las ofertas como tickets. Dos
+lados: la **API REST** en `BreteAI-Backend/app/api/` y el **portal Next.js** en `BreteAI-Frontend`.
+
+**Desbloqueada:** ya hay ofertas reales con score, resumen, comentarios y correos registrados.
+
+**Contexto necesario antes de tocar código (leer SOLO esto):**
+- `docs/requirements.md` §7 (auth de un solo usuario) y §8 (vistas, gestión tipo ticket, filtros).
+- `docs/design.md` §4-D (los niveles de test de este flujo).
+- `BreteAI-Frontend/styles/tokens.css` — **el sistema de diseño ya está decidido y escrito ahí.**
+
+### Dirección de diseño (ya decidida, no re-abrir)
+
+**Denso y silencioso**, claro + oscuro. La decisión está tomada y materializada en
+`styles/tokens.css`; los componentes solo la consumen. El resumen del porqué está en
+`BreteAI-Frontend/README.md`.
+
+Lo esencial: **filas, no cards**; score a la izquierda como ancla de escaneo; neutros cálidos
++ un acento petróleo (no el índigo/violeta por defecto); el color solo comunica significado;
+tipografía chica sin hero. La primera pantalla es la herramienta.
+
+### Orden de implementación
+
+> Backend primero: sin API no hay nada que mostrar. Los pasos 1-4 se prueban con `TestClient`
+> sin tocar el frontend.
+
+1. **`app/api/seguridad.py`** — hash (argon2/bcrypt) + JWT. **Empezar por acá**; todo lo demás
+   depende y un error acá se paga caro. Config nueva + dependencias nuevas en `requirements.txt`.
+2. **`app/api/schemas.py`** — el contrato con el frontend. Invocar la skill **`api-design`**
+   antes de fijar nombres de recursos, códigos de estado y forma de la paginación.
+3. **`app/api/deps.py`** + **`routers/auth.py`** — login con cookie httpOnly.
+4. **`routers/ofertas.py`** y **`routers/correos.py`** — listado con filtros, detalle, cambio de
+   estado (que **debe** escribir en `oferta_historial`), comentarios, adjuntos, feedback.
+5. **`app/main.py`** (modificar) — montar los routers, configurar CORS para el portal.
+6. **Frontend: scaffold** — `npx create-next-app` (TypeScript, App Router). Decidir si entra
+   Tailwind y, si entra, que consuma los tokens existentes en vez de traer su propia escala.
+7. **`lib/tipos.ts` y `lib/api.ts`** — contrato y único punto de fetch. Evaluar generar los
+   tipos desde el OpenAPI de FastAPI en vez de copiarlos a mano.
+8. **`app/layout.tsx`** — shell, script anti-flash del tema, skip link.
+9. **`components/ofertas/`** — `TablaOfertas`, `BadgeScore`, `Filtros`. Es la pantalla principal:
+   si esto queda bien, el resto importa la mitad.
+10. **`app/ofertas/page.tsx`** — listado. Las vistas "no aplicadas"/"aplicadas" son esta misma
+    página con un filtro en la URL, no archivos aparte.
+11. **`components/ticket/`** + **`app/ofertas/[id]/page.tsx`** — detalle tipo ticket.
+12. **`app/login/page.tsx`** y **`app/ultimo-correo/page.tsx`**.
+
+**Skills a invocar durante la implementación** (no ahora, cuando toque cada parte):
+`api-design` (paso 2) · `accessibility` (componentes interactivos) · `react-patterns` (paso 9
+en adelante) · `react-testing` (tests del portal) · `frontend-design-direction` (si algo se
+siente genérico y hay que revisarlo).
+
+### Tests de esta fase (ver `design.md` §4-D)
+
+- `tests/integration/test_api_auth.py` — **el más importante**. Incluye el test que recorre
+  TODOS los endpoints verificando 401 sin autenticar (atrapa el endpoint nuevo que se olvidó
+  de pedir la dependencia).
+- `tests/integration/test_api_ofertas.py` — filtros, paginación, y que el cambio de estado
+  escriba en `oferta_historial`.
+- `BreteAI-Frontend/tests/` — Vitest + Testing Library + axe. Ver su README.
+- Colección **Bruno** de la API propia (contrato para el frontend, corre en CI).
+
+### No hacer en esta fase
+
+- **No hay landing ni hero.** Logueado, entrás viendo tus ofertas.
+- **No cards, no cards dentro de cards, no gradientes decorativos.** La densidad es el punto.
+- **No cambiar la URL `/ofertas/{id}`**: los correos de Fase 3 ya apuntan ahí.
+- **No renderizar la descripción con `dangerouslySetInnerHTML` sin sanitizar** — viene en HTML
+  crudo de los ATS, es XSS directo.
+- **No guardar el token en `localStorage`** (cookie httpOnly, ver `routers/auth.py`).
+- No inventar roles ni permisos: es un solo usuario.
+- No hacer el dashboard (Fase 5), aunque el layout le deje el lugar en el menú.
+
+### Decisiones abiertas (resolver al implementar y dejarlo escrito en el código)
+
+- **¿Dónde vive el usuario?** Hash en `.env` vs tabla `usuarios` nueva → `api/seguridad.py`.
+- **¿Tipos del frontend generados o a mano?** → `lib/tipos.ts`.
+- **¿Server Components o fetch del cliente?**, y cómo se reenvía la cookie en los fetch del
+  servidor → `lib/api.ts`.
+- **¿Entra Tailwind?** Y si entra, que consuma los tokens → `BreteAI-Frontend/README.md`.
+- **¿Cómo se muestra el score?** texto / badge / barra → `BadgeScore.tsx`.
+- **¿Dónde se sanitiza el HTML de las descripciones?** backend o front → `app/ofertas/[id]/page.tsx`.
 
 ## Fase 5 — Dashboard (resumen)
 
@@ -278,6 +356,14 @@ BreteAI-Backend/
 │   │   ├── plantilla.py               ✅ render HTML (cards) + texto plano
 │   │   ├── cliente.py                 ✅ SMTP (único punto de salida)
 │   │   └── envio.py                   ✅ orquesta y registra en `correos`
+│   ├── api/                           ← Fase 4
+│   │   ├── seguridad.py               🔨 hash + JWT — EMPEZAR ACÁ
+│   │   ├── schemas.py                 🔨 contrato con el frontend
+│   │   ├── deps.py                    🔨 usuario_actual (protege endpoints)
+│   │   └── routers/
+│   │       ├── auth.py                🔨 login con cookie httpOnly
+│   │       ├── ofertas.py             🔨 listado, detalle, estado, comentarios
+│   │       └── correos.py             🔨 vista "último correo"
 │   ├── pipeline/
 │   │   ├── staging.py                 ✅ escribe en ofertas_raw
 │   │   ├── runner.py                  ✅ orquesta una corrida de scraping
@@ -300,7 +386,9 @@ BreteAI-Backend/
 │   │   ├── test_staging_pipeline.py   ✅ 3 tests
 │   │   ├── test_ai_worker.py          ✅ 6 tests, LLM mockeado
 │   │   ├── test_correo_seleccion.py   ✅ 8 tests, Postgres real
-│   │   └── test_correo_envio.py       ✅ 4 tests, MailHog real
+│   │   ├── test_correo_envio.py       ✅ 4 tests, MailHog real
+│   │   ├── test_api_auth.py           🔨 auth (Fase 4) — el más importante
+│   │   └── test_api_ofertas.py        🔨 filtros, paginación, historial (Fase 4)
 │   ├── contract/
 │   │   └── test_connectors_contract.py ✅ 14 tests (marker `contract`)
 │   └── golden/
@@ -309,8 +397,36 @@ BreteAI-Backend/
 └── requirements.txt                   ✅ versiones pineadas
 ```
 
-Todos los archivos ya existen y están implementados — abrilos para ver el detalle de cada
-decisión (quedan documentadas en los docstrings, no solo en este índice).
+```
+BreteAI-Frontend/                      ← Fase 4 (Next.js App Router)
+├── styles/
+│   └── tokens.css                     ✅ SISTEMA DE DISEÑO COMPLETO (no es TODO)
+├── app/
+│   ├── layout.tsx                     🔨 shell, anti-flash del tema, skip link
+│   ├── login/page.tsx                 🔨
+│   ├── ofertas/
+│   │   ├── page.tsx                   🔨 listado — la pantalla principal
+│   │   └── [id]/page.tsx              🔨 detalle tipo ticket (URL usada por el correo)
+│   └── ultimo-correo/page.tsx         🔨
+├── components/
+│   ├── ofertas/
+│   │   ├── TablaOfertas.tsx           🔨 filas densas, no cards
+│   │   ├── BadgeScore.tsx             🔨 el componente más repetido
+│   │   └── Filtros.tsx                🔨 filtros en la URL, no en estado
+│   ├── ticket/
+│   │   ├── PanelEstado.tsx            🔨 escribe historial vía API
+│   │   ├── Comentarios.tsx            🔨
+│   │   └── Adjuntos.tsx               🔨
+│   └── ui/
+│       └── ToggleTema.tsx             🔨 claro/oscuro/sistema
+├── lib/
+│   ├── api.ts                         🔨 único punto de fetch del portal
+│   └── tipos.ts                       🔨 espejo de app/api/schemas.py
+└── tests/README.md                    ✅ qué y cómo testear (Vitest + axe)
+```
+
+Los archivos `✅` están implementados; los `🔨` tienen el docstring con qué va ahí, qué NO
+hacer y qué decisiones quedaron abiertas. **Abrilos antes de escribir.**
 
 ---
 

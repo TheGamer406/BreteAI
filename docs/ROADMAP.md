@@ -75,13 +75,34 @@ Marcar `[x]` al completar.
 
 **Corrida real verificada:** correo enviado con las 10 mejores ofertas ya analizadas (score 85→45), headers y multipart correctos, registrado en `correos`.
 
-### Fase 4 — Portal (Next.js)
-- [ ] Login seguro (single user, password hasheada).
-- [ ] Vistas: visor, no aplicadas, aplicadas, último correo.
-- [ ] Gestión tipo ticket: estados, etiquetas, comentarios, archivos.
-- [ ] Filtros: empresa, modalidad, ubicación, estado, score.
-- [ ] Responsivo (PC-first).
-- [ ] **Tests:** endpoints con TestClient de FastAPI (auth incluida); colección Bruno de la API propia (contrato para el frontend, corre en CI); Vitest en componentes (`design.md` §4-D).
+### Fase 4 — Portal (API + Next.js)
+
+> Esqueleto creado (2026-08-16): `app/api/` en el backend, `BreteAI-Frontend/` completo.
+> **Dirección de diseño ya decidida:** denso y silencioso, claro + oscuro. El sistema está
+> escrito y completo en `BreteAI-Frontend/styles/tokens.css` (no es un TODO).
+> Orden de implementación y contexto: **`docs/GUIA-IMPLEMENTACION.md` § Fase 4.**
+
+**Backend — API REST**
+- [ ] Hash de password (argon2/bcrypt) + JWT (`api/seguridad.py`). **Empezar por acá.** Decisión abierta: hash en `.env` vs tabla `usuarios` nueva.
+- [ ] Contrato de la API (`api/schemas.py`) — invocar la skill `api-design`. Paginación desde el día uno (el histórico crece).
+- [ ] Login con cookie `httpOnly` (no `localStorage`), rate limiting, mismo mensaje de error para usuario/password incorrectos.
+- [ ] Endpoints de ofertas: listado con filtros, detalle, cambio de estado (**debe escribir en `oferta_historial`**, o el dashboard de Fase 5 nace sin datos), etiquetas, comentarios, adjuntos.
+- [ ] Endpoint de feedback → escribe en `feedback_ia` y cierra el ciclo con Fase 2 (hoy la tabla existe pero nada la llena).
+- [ ] Vista "último correo" (`routers/correos.py`).
+- [ ] Montar routers y CORS en `app/main.py`.
+
+**Frontend — portal Next.js**
+- [ ] Scaffold Next.js (App Router + TypeScript). Decidir si entra Tailwind y, si entra, que consuma los tokens existentes.
+- [ ] Cliente de API (`lib/api.ts`, único punto de fetch) y tipos (`lib/tipos.ts`, evaluar generarlos desde el OpenAPI).
+- [ ] Shell + toggle de tema con script anti-flash + skip link.
+- [ ] Tabla de ofertas densa (filas, no cards; score a la izquierda) + filtros en la URL.
+- [ ] Detalle tipo ticket: estado, etiquetas, comentarios, adjuntos, feedback a la IA.
+- [ ] Login y vista "último correo".
+- [ ] Responsivo: PC primero; bajo ~48rem la tabla colapsa a 2 líneas por oferta (sin scroll horizontal).
+
+**Calidad**
+- [ ] **Accesibilidad WCAG 2.2 AA**: axe en la suite + recorrido manual con teclado + contraste verificado en los DOS temas.
+- [ ] **Tests:** `test_api_auth.py` (incluye el test que recorre todos los endpoints verificando 401) y `test_api_ofertas.py` con Postgres real; Vitest + Testing Library en el portal; colección Bruno de la API propia en CI.
 
 ### Fase 5 — Dashboard
 - [ ] Aplicadas vs no aplicadas.
@@ -105,6 +126,18 @@ Marcar `[x]` al completar.
 - [ ] Confirmar disparo real del scheduler (esperar un horario o forzar un trigger de prueba) — hoy solo está verificada la config.
 - [ ] Mapear board tokens/slugs de ATS a nombres legibles de empresa (hoy `empresa` guarda el token, ver TODOs en `greenhouse.py`/`lever.py`/`ashby.py`).
 - [ ] Colección **Bruno** por fuente (cliente API open source, colecciones versionadas en git).
+
+**Origen: Fase 3**
+- [ ] **Probar envío real por Gmail SMTP** (todo lo verificado hasta ahora fue contra MailHog). Requiere acción manual del usuario:
+  1. Activar 2FA en la cuenta de Google.
+  2. Generar una **App Password** en myaccount.google.com → Seguridad → Contraseñas de aplicaciones (16 caracteres).
+  3. Poner `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_FROM`, `MAIL_TO` en `BreteAI-Backend/.env` (nunca commitear).
+  4. Enviar sin pasar `client=` para que use el cliente Gmail por defecto (TLS en 587).
+- [ ] **Sincronizar `.env` local cuando se agregue config nueva** — el `.env` no se actualiza solo desde `.env.example` y se desincroniza en silencio (pasó el 2026-08-16: faltaban 12 variables de Fase 2 y 3, y los tests golden fallaban apuntando al puerto de Ollama en vez del de LM Studio). Chequeo rápido:
+  ```bash
+  comm -23 <(grep -oP '^[A-Z_]+(?==)' .env.example|sort) <(grep -oP '^[A-Z_]+(?==)' .env|sort)
+  ```
+  Evaluar automatizarlo (validación al arrancar la app, o un test que compare ambos archivos).
 
 ### Transversal
 - [ ] **Checklist de seguridad al desplegar en el server** (en la PC de dev se aceptó relajado a propósito, auditoría 2026-08-12):
