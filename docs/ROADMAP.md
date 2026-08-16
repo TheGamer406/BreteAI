@@ -32,24 +32,29 @@ Marcar `[x]` al completar.
 
 **Corrida real verificada:** 411 ofertas de 5 fuentes guardadas en `ofertas_raw`, sin duplicados entre corridas.
 
-### Fase 2 — IA
+### Fase 2 — IA ✅ (funcional 2026-08-15)
 
-> Esqueleto de archivos creado (2026-08-12): `app/ai/`, `app/pipeline/worker.py`,
-> `app/feedback/`, tests. Cada archivo tiene el docstring con qué implementar.
-> Orden de implementación y contexto: **`docs/GUIA-IMPLEMENTACION.md` § Fase 2.**
+> Implementada y verificada contra un LLM real: **Qwen2.5-7B-Instruct (Q4_K_M)** corriendo en
+> LM Studio en esta PC de desarrollo (`localhost:1234`, API OpenAI-compatible). El cliente
+> (`app/ai/client.py`) habla esa misma API que expone Ollama, así que sirve sin cambios para el
+> runtime de producción documentado en `requirements.md` §5.2 — solo cambia `OLLAMA_HOST`/`OLLAMA_MODEL`.
 
-- [ ] **Validación estricta de la salida del LLM** (`ai/schemas.py`) + reintentos + raw en `error` reprocesable. **Empezar por acá** — es el Riesgo #1 de `design.md` §5.
-- [ ] Ollama corriendo: servicio en el `docker-compose` de Infra + volumen para los modelos. Qwen 2.5 7B (Q4_K_M) — comparar vs Llama 3.2.
-- [ ] Cliente de Ollama (`ai/client.py`) + config nueva (`OLLAMA_HOST`, `OLLAMA_MODEL`, timeout largo).
-- [ ] Carga de `perfil.toon` (`ai/perfil.py`) y armado de prompts (`ai/prompts.py`).
-- [ ] Worker de la cola (`pipeline/worker.py`): `ofertas_raw` pendiente → IA → `ofertas`. Incluye re-mapear el payload crudo a canónico reusando el `_map()` del conector.
-- [ ] Pipeline de análisis: resumen + extracción de campos + score 0-100 contra el perfil.
-- [ ] Enriquecimiento "info de segunda mano" (proveedor vs empresa real) — sale del mismo análisis.
-- [ ] Estimación de salario cuando no viene (`ai/salario.py`) — marcar `salario_estimado=True`, nunca inventar un número.
-- [ ] Dedup semántico con embeddings (`ai/embeddings.py`) → llena `ofertas.similar_a`. Puede ir al final, no bloquea.
-- [ ] Feedback simple: correcciones ajustan criterios del prompt (`feedback/criterios.py` + tabla `feedback_ia`). Puede ir al final.
-- [ ] Enganchar el worker al scheduler (paso 2 después del scraping en `scheduler/jobs.py`).
-- [ ] **Tests:** unitarios de validación de salida y de prompt; worker con mock de Ollama (corre en CI, sin GPU); golden set de scores contra Ollama real (solo server, marker `golden`).
+- [x] **Validación estricta de la salida del LLM** (`ai/schemas.py`) + reintentos + raw en `error` reprocesable — Riesgo #1 de `design.md` §5.
+- [x] Servicio de IA: agregado al `docker-compose` de Infra (`ollama/ollama` + GPU passthrough) para el server. En esta PC se usó LM Studio en vez de instalar Ollama (mismo protocolo, ya tenía el runtime).
+- [x] Cliente contra API OpenAI-compatible (`ai/client.py`) + config (`OLLAMA_HOST`, `OLLAMA_MODEL`, `OLLAMA_MODELO_EMBEDDINGS`, timeout largo).
+- [x] Carga de `perfil.toon` (`ai/perfil.py`, parser TOON propio) y armado de prompts (`ai/prompts.py`, limpia HTML y trunca descripciones largas).
+- [x] Worker de la cola (`pipeline/worker.py`): `ofertas_raw` pendiente → IA → `ofertas`. Re-mapea el payload crudo a canónico vía `connectors/registro.py` (nuevo, extraído de `runner.py` para no duplicar la lista de conectores).
+- [x] Pipeline de análisis: resumen + extracción de campos + score 0-100 contra el perfil — verificado discriminando correctamente (junior backend match=85-100, senior/stack ajeno=0-10, no técnico=15-40).
+- [x] Enriquecimiento "info de segunda mano" (`empresa_real`) — sale del mismo análisis.
+- [x] Estimación de salario cuando no viene (`ai/salario.py`) — promedia ofertas ya guardadas con salario real (no LLM, evita alucinación); `salario_estimado=True` cuando aplica.
+- [x] Dedup semántico con embeddings (`ai/embeddings.py`) → llena `ofertas.similar_a`. Requirió agregar columna `embedding JSONB` a `ofertas` (DDL + ORM). Verificado: mismo título+empresa en fuente distinta → detecta; título similar pero empresa distinta → no falso-positivo.
+- [x] Feedback simple: correcciones ajustan criterios del prompt (`feedback/criterios.py` + tabla `feedback_ia`), enganchado al worker.
+- [x] Worker enganchado al scheduler (`scheduler/jobs.py`: scraping → reprocesar errores → worker, cada corrida).
+- [x] **Tests:** 65 tests totales — 11 unit de schemas (fixtures reales del LLM) + 7 unit de prompts + 6 integración de worker (Postgres real, LLM mockeado) en el run default; 6 golden calibrados contra el LLM real (marker `golden`); + los 14 de contrato de Fase 1.
+
+**Corrida real verificada:** 58 ofertas analizadas de punta a punta (411 en cola), 0 errores, ~4s/oferta, scores coherentes en todo el rango.
+
+**Refactor de Fase 1 durante esta fase:** lógica de reintentos extraída a `app/common/retry.py` (compartida entre `connectors/base.py` y `ai/client.py`, DRY); tipo de `Oferta.requisitos`/`beneficios` corregido a `list[str]` (antes `List[dict]`, inconsistente con el schema real).
 
 ### Fase 3 — Correo
 - [ ] Gmail SMTP con App Password.
