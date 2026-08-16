@@ -129,21 +129,21 @@
       "norm_label": "como usar esta guia"
     },
     {
-      "label": "Fase 1 \u2014 Scraping + DB",
+      "label": "Fase 1 \u2014 Scraping + DB \u2705 IMPLEMENTADA",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
-      "id": "docs_guia_implementacion_fase_1_scraping_db",
+      "id": "docs_guia_implementacion_fase_1_scraping_db_implementada",
       "community": 7,
       "community_name": "Entorno Local de Desarrollo",
-      "norm_label": "fase 1 \u2014 scraping + db"
+      "norm_label": "fase 1 \u2014 scraping + db \u2705 implementada"
     },
     {
       "label": "Orden de implementaci\u00f3n (`BreteAI-Backend/app/`)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L42",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "docs_guia_implementacion_orden_de_implementaci\u00f3n_breteai_backend_app",
       "community": 7,
@@ -154,7 +154,7 @@
       "label": "Tests de esta fase (ver `design.md` \u00a74-A)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L55",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_a",
       "community": 7,
@@ -165,7 +165,7 @@
       "label": "No hacer en esta fase (para no salirse de alcance)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L62",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "docs_guia_implementacion_no_hacer_en_esta_fase_para_no_salirse_de_alcance",
       "community": 7,
@@ -173,21 +173,65 @@
       "norm_label": "no hacer en esta fase (para no salirse de alcance)"
     },
     {
-      "label": "Fase 2 \u2014 IA (resumen)",
+      "label": "Fase 2 \u2014 IA \ud83d\udd28 A IMPLEMENTAR",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L70",
+      "source_location": "L72",
       "_origin": "ast",
-      "id": "docs_guia_implementacion_fase_2_ia_resumen",
+      "id": "docs_guia_implementacion_fase_2_ia_a_implementar",
       "community": 7,
       "community_name": "Entorno Local de Desarrollo",
-      "norm_label": "fase 2 \u2014 ia (resumen)"
+      "norm_label": "fase 2 \u2014 ia \ud83d\udd28 a implementar"
+    },
+    {
+      "label": "Orden de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_orden_de_implementaci\u00f3n",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "orden de implementacion"
+    },
+    {
+      "label": "Tests de esta fase (ver `design.md` \u00a74-B)",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_b",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "tests de esta fase (ver `design.md` \u00a74-b)"
+    },
+    {
+      "label": "No hacer en esta fase (para no salirse de alcance)",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L128",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_no_hacer_en_esta_fase_para_no_salirse_de_alcance_128",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "no hacer en esta fase (para no salirse de alcance)"
+    },
+    {
+      "label": "Decisiones que quedaron abiertas a prop\u00f3sito",
+      "file_type": "document",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "docs_guia_implementacion_decisiones_que_quedaron_abiertas_a_prop\u00f3sito",
+      "community": 7,
+      "community_name": "Entorno Local de Desarrollo",
+      "norm_label": "decisiones que quedaron abiertas a proposito"
     },
     {
       "label": "Fase 3 \u2014 Correo (resumen)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L76",
+      "source_location": "L150",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_3_correo_resumen",
       "community": 7,
@@ -198,7 +242,7 @@
       "label": "Fase 4 \u2014 Portal (resumen)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L80",
+      "source_location": "L154",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_4_portal_resumen",
       "community": 7,
@@ -209,7 +253,7 @@
       "label": "Fase 5 \u2014 Dashboard (resumen)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L85",
+      "source_location": "L159",
       "_origin": "ast",
       "id": "docs_guia_implementacion_fase_5_dashboard_resumen",
       "community": 7,
@@ -217,21 +261,21 @@
       "norm_label": "fase 5 \u2014 dashboard (resumen)"
     },
     {
-      "label": "Estructura de m\u00f3dulos \u2014 Fase 1 (\u00e1rbol completo)",
+      "label": "Estructura de m\u00f3dulos (\u00e1rbol completo)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L91",
+      "source_location": "L165",
       "_origin": "ast",
-      "id": "docs_guia_implementacion_estructura_de_m\u00f3dulos_fase_1_\u00e1rbol_completo",
+      "id": "docs_guia_implementacion_estructura_de_m\u00f3dulos_\u00e1rbol_completo",
       "community": 7,
       "community_name": "Entorno Local de Desarrollo",
-      "norm_label": "estructura de modulos \u2014 fase 1 (arbol completo)"
+      "norm_label": "estructura de modulos (arbol completo)"
     },
     {
       "label": "Principios transversales (aplican a TODAS las fases)",
       "file_type": "document",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L132",
+      "source_location": "L233",
       "_origin": "ast",
       "id": "docs_guia_implementacion_principios_transversales_aplican_a_todas_las_fases",
       "community": 7,
@@ -251,8 +295,8 @@
       "community": 1,
       "norm_label": "breteai (proyecto)",
       "_origin": "semantic",
-      "id": "readme_breteai",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "readme_breteai"
     },
     {
       "label": "BreteAI-Backend",
@@ -266,8 +310,8 @@
       "community": 1,
       "norm_label": "breteai-backend",
       "_origin": "semantic",
-      "id": "breteai_backend_readme_backend",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "breteai_backend_readme_backend"
     },
     {
       "label": "BreteAI-Frontend",
@@ -278,11 +322,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "breteai-frontend",
       "_origin": "semantic",
-      "id": "breteai_frontend_readme_frontend",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "breteai_frontend_readme_frontend"
     },
     {
       "label": "BreteAI-Infra",
@@ -296,8 +340,8 @@
       "community": 1,
       "norm_label": "breteai-infra",
       "_origin": "semantic",
-      "id": "breteai_infra_readme_infra",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "breteai_infra_readme_infra"
     },
     {
       "label": "Subm\u00f3dulos git",
@@ -311,8 +355,8 @@
       "community": 1,
       "norm_label": "submodulos git",
       "_origin": "semantic",
-      "id": "docs_setup_git_submodules",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_setup_git_submodules"
     },
     {
       "label": "BreteAI (contexto del proyecto)",
@@ -326,8 +370,8 @@
       "community": 2,
       "norm_label": "breteai (contexto del proyecto)",
       "_origin": "semantic",
-      "id": "claude_breteai",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "claude_breteai"
     },
     {
       "label": "Stack CERRADO v1",
@@ -342,8 +386,8 @@
       "community": 0,
       "norm_label": "stack cerrado v1",
       "_origin": "semantic",
-      "id": "claude_stack_cerrado_v1",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "claude_stack_cerrado_v1"
     },
     {
       "label": "Reglas de negocio clave",
@@ -357,8 +401,8 @@
       "community": 5,
       "norm_label": "reglas de negocio clave",
       "_origin": "semantic",
-      "id": "claude_reglas_de_negocio",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "claude_reglas_de_negocio"
     },
     {
       "label": "Integraci\u00f3n graphify",
@@ -373,8 +417,8 @@
       "community": 6,
       "norm_label": "integracion graphify",
       "_origin": "semantic",
-      "id": "claude_graphify",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "claude_graphify"
     },
     {
       "label": "perfil.toon (configuraci\u00f3n del perfil)",
@@ -389,8 +433,8 @@
       "community": 0,
       "norm_label": "perfil.toon (configuracion del perfil)",
       "_origin": "semantic",
-      "id": "claude_perfil_toon",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "claude_perfil_toon"
     },
     {
       "label": "Estructura multi-repo con subm\u00f3dulos",
@@ -404,8 +448,8 @@
       "community": 8,
       "norm_label": "estructura multi-repo con submodulos",
       "_origin": "semantic",
-      "id": "claude_estructura_multi_repo",
-      "community_name": "Multi-repo y Docker"
+      "community_name": "Multi-repo y Docker",
+      "id": "claude_estructura_multi_repo"
     },
     {
       "label": "Visi\u00f3n de BreteAI",
@@ -420,8 +464,8 @@
       "community": 2,
       "norm_label": "vision de breteai",
       "_origin": "semantic",
-      "id": "docs_requirements_vision",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_requirements_vision"
     },
     {
       "label": "Principio: solo fuentes legales",
@@ -436,8 +480,8 @@
       "community": 5,
       "norm_label": "principio: solo fuentes legales",
       "_origin": "semantic",
-      "id": "docs_requirements_fuentes_legales",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_requirements_fuentes_legales"
     },
     {
       "label": "Remotive (feed abierto)",
@@ -451,8 +495,8 @@
       "community": 18,
       "norm_label": "remotive (feed abierto)",
       "_origin": "semantic",
-      "id": "docs_requirements_remotive",
-      "community_name": "Fuente Remotive"
+      "community_name": "Fuente Remotive",
+      "id": "docs_requirements_remotive"
     },
     {
       "label": "RemoteOK (feed abierto)",
@@ -466,8 +510,8 @@
       "community": 17,
       "norm_label": "remoteok (feed abierto)",
       "_origin": "semantic",
-      "id": "docs_requirements_remoteok",
-      "community_name": "Fuente RemoteOK"
+      "community_name": "Fuente RemoteOK",
+      "id": "docs_requirements_remoteok"
     },
     {
       "label": "Arbeitnow (feed abierto)",
@@ -481,8 +525,8 @@
       "community": 11,
       "norm_label": "arbeitnow (feed abierto)",
       "_origin": "semantic",
-      "id": "docs_requirements_arbeitnow",
-      "community_name": "Fuente Arbeitnow"
+      "community_name": "Fuente Arbeitnow",
+      "id": "docs_requirements_arbeitnow"
     },
     {
       "label": "Jobicy (feed abierto)",
@@ -496,8 +540,8 @@
       "community": 15,
       "norm_label": "jobicy (feed abierto)",
       "_origin": "semantic",
-      "id": "docs_requirements_jobicy",
-      "community_name": "Fuente Jobicy"
+      "community_name": "Fuente Jobicy",
+      "id": "docs_requirements_jobicy"
     },
     {
       "label": "Himalayas (feed abierto)",
@@ -511,8 +555,8 @@
       "community": 14,
       "norm_label": "himalayas (feed abierto)",
       "_origin": "semantic",
-      "id": "docs_requirements_himalayas",
-      "community_name": "Fuente Himalayas"
+      "community_name": "Fuente Himalayas",
+      "id": "docs_requirements_himalayas"
     },
     {
       "label": "Adzuna API",
@@ -527,8 +571,8 @@
       "community": 10,
       "norm_label": "adzuna api",
       "_origin": "semantic",
-      "id": "docs_requirements_adzuna",
-      "community_name": "Fuente Adzuna"
+      "community_name": "Fuente Adzuna",
+      "id": "docs_requirements_adzuna"
     },
     {
       "label": "ATS Greenhouse (API p\u00fablica)",
@@ -542,8 +586,8 @@
       "community": 13,
       "norm_label": "ats greenhouse (api publica)",
       "_origin": "semantic",
-      "id": "docs_requirements_greenhouse",
-      "community_name": "ATS Greenhouse"
+      "community_name": "ATS Greenhouse",
+      "id": "docs_requirements_greenhouse"
     },
     {
       "label": "ATS Lever (API p\u00fablica)",
@@ -557,8 +601,8 @@
       "community": 16,
       "norm_label": "ats lever (api publica)",
       "_origin": "semantic",
-      "id": "docs_requirements_lever",
-      "community_name": "ATS Lever"
+      "community_name": "ATS Lever",
+      "id": "docs_requirements_lever"
     },
     {
       "label": "ATS Ashby (API p\u00fablica)",
@@ -572,8 +616,8 @@
       "community": 12,
       "norm_label": "ats ashby (api publica)",
       "_origin": "semantic",
-      "id": "docs_requirements_ashby",
-      "community_name": "ATS Ashby"
+      "community_name": "ATS Ashby",
+      "id": "docs_requirements_ashby"
     },
     {
       "label": "ATS Workday (pospuesto)",
@@ -588,8 +632,8 @@
       "community": 5,
       "norm_label": "ats workday (pospuesto)",
       "_origin": "semantic",
-      "id": "docs_requirements_workday",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_requirements_workday"
     },
     {
       "label": "PostgreSQL",
@@ -604,8 +648,8 @@
       "community": 1,
       "norm_label": "postgresql",
       "_origin": "semantic",
-      "id": "docs_requirements_postgresql",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_requirements_postgresql"
     },
     {
       "label": "Python + FastAPI",
@@ -620,8 +664,8 @@
       "community": 1,
       "norm_label": "python + fastapi",
       "_origin": "semantic",
-      "id": "docs_requirements_fastapi",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_requirements_fastapi"
     },
     {
       "label": "Ollama (IA 100% local)",
@@ -636,8 +680,8 @@
       "community": 0,
       "norm_label": "ollama (ia 100% local)",
       "_origin": "semantic",
-      "id": "docs_requirements_ollama",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_ollama"
     },
     {
       "label": "Qwen 2.5 7B Q4_K_M (modelo recomendado)",
@@ -652,8 +696,8 @@
       "community": 0,
       "norm_label": "qwen 2.5 7b q4_k_m (modelo recomendado)",
       "_origin": "semantic",
-      "id": "docs_requirements_qwen_2_5_7b",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_qwen_2_5_7b"
     },
     {
       "label": "Next.js (portal web)",
@@ -665,11 +709,11 @@
       "author": null,
       "contributor": null,
       "rationale": "Elegido porque se necesita interactividad (tickets, filtros, estados); Astro descartado. Hospedado en el mismo server dentro de la red Docker por simplicidad; acceso externo v\u00eda Tailscale. Dise\u00f1o PC-first responsivo, est\u00e9tica fresca que no parezca hecha por IA.",
-      "community": 3,
+      "community": 1,
       "norm_label": "next.js (portal web)",
       "_origin": "semantic",
-      "id": "docs_requirements_nextjs",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_requirements_nextjs"
     },
     {
       "label": "Gmail SMTP con App Password",
@@ -684,8 +728,8 @@
       "community": 1,
       "norm_label": "gmail smtp con app password",
       "_origin": "semantic",
-      "id": "docs_requirements_gmail_smtp",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_requirements_gmail_smtp"
     },
     {
       "label": "Tailscale (acceso al server)",
@@ -699,8 +743,8 @@
       "community": 19,
       "norm_label": "tailscale (acceso al server)",
       "_origin": "semantic",
-      "id": "docs_requirements_tailscale",
-      "community_name": "Acceso Tailscale"
+      "community_name": "Acceso Tailscale",
+      "id": "docs_requirements_tailscale"
     },
     {
       "label": "CI/CD con GitHub Actions",
@@ -715,8 +759,8 @@
       "community": 6,
       "norm_label": "ci/cd con github actions",
       "_origin": "semantic",
-      "id": "docs_requirements_github_actions",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "docs_requirements_github_actions"
     },
     {
       "label": "Bruno (cliente API)",
@@ -731,8 +775,8 @@
       "community": 6,
       "norm_label": "bruno (cliente api)",
       "_origin": "semantic",
-      "id": "docs_requirements_bruno",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "docs_requirements_bruno"
     },
     {
       "label": "perfil.toon (perfil del candidato)",
@@ -747,8 +791,8 @@
       "community": 0,
       "norm_label": "perfil.toon (perfil del candidato)",
       "_origin": "semantic",
-      "id": "docs_requirements_perfil_toon",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_perfil_toon"
     },
     {
       "label": "Pipeline por etapas (staging)",
@@ -763,8 +807,8 @@
       "community": 2,
       "norm_label": "pipeline por etapas (staging)",
       "_origin": "semantic",
-      "id": "docs_requirements_pipeline_staging",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_requirements_pipeline_staging"
     },
     {
       "label": "Deduplicaci\u00f3n de ofertas",
@@ -779,8 +823,8 @@
       "community": 0,
       "norm_label": "deduplicacion de ofertas",
       "_origin": "semantic",
-      "id": "docs_requirements_deduplicacion",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_deduplicacion"
     },
     {
       "label": "Feedback simple de IA",
@@ -795,8 +839,8 @@
       "community": 0,
       "norm_label": "feedback simple de ia",
       "_origin": "semantic",
-      "id": "docs_requirements_feedback_ia",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_feedback_ia"
     },
     {
       "label": "Estados de oferta",
@@ -811,8 +855,8 @@
       "community": 5,
       "norm_label": "estados de oferta",
       "_origin": "semantic",
-      "id": "docs_requirements_estados_de_oferta",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_requirements_estados_de_oferta"
     },
     {
       "label": "Dashboard de anal\u00edtica",
@@ -823,11 +867,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "dashboard de analitica",
       "_origin": "semantic",
-      "id": "docs_requirements_dashboard",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_requirements_dashboard"
     },
     {
       "label": "Graphify (requisito esencial)",
@@ -842,8 +886,8 @@
       "community": 6,
       "norm_label": "graphify (requisito esencial)",
       "_origin": "semantic",
-      "id": "docs_requirements_graphify",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "docs_requirements_graphify"
     },
     {
       "label": "Score de match 0-100",
@@ -857,8 +901,8 @@
       "community": 0,
       "norm_label": "score de match 0-100",
       "_origin": "semantic",
-      "id": "docs_requirements_score_match",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_requirements_score_match"
     },
     {
       "label": "Apify (respaldo opcional)",
@@ -873,8 +917,8 @@
       "community": 5,
       "norm_label": "apify (respaldo opcional)",
       "_origin": "semantic",
-      "id": "docs_requirements_apify",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_requirements_apify"
     },
     {
       "label": "Infraestructura Docker (breteai-net)",
@@ -889,8 +933,8 @@
       "community": 8,
       "norm_label": "infraestructura docker (breteai-net)",
       "_origin": "semantic",
-      "id": "docs_requirements_infra_docker",
-      "community_name": "Multi-repo y Docker"
+      "community_name": "Multi-repo y Docker",
+      "id": "docs_requirements_infra_docker"
     },
     {
       "label": "Pipeline por etapas (dise\u00f1o)",
@@ -905,8 +949,8 @@
       "community": 2,
       "norm_label": "pipeline por etapas (diseno)",
       "_origin": "semantic",
-      "id": "docs_design_pipeline_por_etapas",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_pipeline_por_etapas"
     },
     {
       "label": "Modelo can\u00f3nico de oferta",
@@ -921,8 +965,8 @@
       "community": 2,
       "norm_label": "modelo canonico de oferta",
       "_origin": "semantic",
-      "id": "docs_design_modelo_canonico",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_modelo_canonico"
     },
     {
       "label": "Esquema de DB (DDL borrador)",
@@ -937,8 +981,8 @@
       "community": 1,
       "norm_label": "esquema de db (ddl borrador)",
       "_origin": "semantic",
-      "id": "docs_design_esquema_db",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_design_esquema_db"
     },
     {
       "label": "Tabla corridas",
@@ -953,8 +997,8 @@
       "community": 2,
       "norm_label": "tabla corridas",
       "_origin": "semantic",
-      "id": "docs_design_tabla_corridas",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_tabla_corridas"
     },
     {
       "label": "Tabla ofertas_raw (staging/cola)",
@@ -969,8 +1013,8 @@
       "community": 2,
       "norm_label": "tabla ofertas_raw (staging/cola)",
       "_origin": "semantic",
-      "id": "docs_design_tabla_ofertas_raw",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_tabla_ofertas_raw"
     },
     {
       "label": "Tabla ofertas (estructura fija)",
@@ -985,8 +1029,8 @@
       "community": 0,
       "norm_label": "tabla ofertas (estructura fija)",
       "_origin": "semantic",
-      "id": "docs_design_tabla_ofertas",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_tabla_ofertas"
     },
     {
       "label": "Tabla oferta_historial",
@@ -1001,8 +1045,8 @@
       "community": 0,
       "norm_label": "tabla oferta_historial",
       "_origin": "semantic",
-      "id": "docs_design_tabla_oferta_historial",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_tabla_oferta_historial"
     },
     {
       "label": "Tabla feedback_ia",
@@ -1016,8 +1060,8 @@
       "community": 0,
       "norm_label": "tabla feedback_ia",
       "_origin": "semantic",
-      "id": "docs_design_tabla_feedback_ia",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_tabla_feedback_ia"
     },
     {
       "label": "Tabla correos",
@@ -1031,8 +1075,8 @@
       "community": 0,
       "norm_label": "tabla correos",
       "_origin": "semantic",
-      "id": "docs_design_tabla_correos",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_tabla_correos"
     },
     {
       "label": "Worker IA (Ollama)",
@@ -1047,8 +1091,8 @@
       "community": 0,
       "norm_label": "worker ia (ollama)",
       "_origin": "semantic",
-      "id": "docs_design_worker_ia",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_worker_ia"
     },
     {
       "label": "Idempotencia (UNIQUE fuente + id_externo)",
@@ -1063,8 +1107,8 @@
       "community": 2,
       "norm_label": "idempotencia (unique fuente + id_externo)",
       "_origin": "semantic",
-      "id": "docs_design_idempotencia",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_idempotencia"
     },
     {
       "label": "Estrategia de pruebas por flujo",
@@ -1079,8 +1123,8 @@
       "community": 6,
       "norm_label": "estrategia de pruebas por flujo",
       "_origin": "semantic",
-      "id": "docs_design_estrategia_de_pruebas",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "docs_design_estrategia_de_pruebas"
     },
     {
       "label": "Riesgo #1: salida del LLM malformada",
@@ -1095,8 +1139,8 @@
       "community": 0,
       "norm_label": "riesgo #1: salida del llm malformada",
       "_origin": "semantic",
-      "id": "docs_design_riesgo_salida_llm",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_design_riesgo_salida_llm"
     },
     {
       "label": "Scheduler (APScheduler, 4x/d\u00eda)",
@@ -1111,8 +1155,8 @@
       "community": 2,
       "norm_label": "scheduler (apscheduler, 4x/dia)",
       "_origin": "semantic",
-      "id": "docs_design_scheduler",
-      "community_name": "Pipeline por Etapas (Staging)"
+      "community_name": "Pipeline por Etapas (Staging)",
+      "id": "docs_design_scheduler"
     },
     {
       "label": "Backup diario pg_dump ~17:00",
@@ -1127,8 +1171,8 @@
       "community": 1,
       "norm_label": "backup diario pg_dump ~17:00",
       "_origin": "semantic",
-      "id": "docs_design_backup",
-      "community_name": "Backend, DB e Infra"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_design_backup"
     },
     {
       "label": "MailHog (SMTP falso para tests)",
@@ -1139,11 +1183,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "mailhog (smtp falso para tests)",
       "_origin": "semantic",
-      "id": "docs_design_mailhog",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_design_mailhog"
     },
     {
       "label": "testcontainers (Postgres real en tests)",
@@ -1157,8 +1201,8 @@
       "community": 9,
       "norm_label": "testcontainers (postgres real en tests)",
       "_origin": "semantic",
-      "id": "docs_design_testcontainers",
-      "community_name": "Testcontainers"
+      "community_name": "Testcontainers",
+      "id": "docs_design_testcontainers"
     },
     {
       "label": "v1 (MVP funcional)",
@@ -1169,11 +1213,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "v1 (mvp funcional)",
       "_origin": "semantic",
-      "id": "docs_roadmap_v1_mvp",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_roadmap_v1_mvp"
     },
     {
       "label": "Fase 1 \u2014 Scraping + DB",
@@ -1186,8 +1230,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "fase 1 \u2014 scraping + db",
-      "id": "docs_roadmap_fase_1_scraping_db",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "docs_roadmap_fase_1_scraping_db"
     },
     {
       "label": "Fase 2 \u2014 IA",
@@ -1201,8 +1245,8 @@
       "community": 0,
       "norm_label": "fase 2 \u2014 ia",
       "_origin": "semantic",
-      "id": "docs_roadmap_fase_2_ia",
-      "community_name": "Capa de IA y Perfil"
+      "community_name": "Capa de IA y Perfil",
+      "id": "docs_roadmap_fase_2_ia"
     },
     {
       "label": "Fase 3 \u2014 Correo",
@@ -1213,11 +1257,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "fase 3 \u2014 correo",
       "_origin": "semantic",
-      "id": "docs_roadmap_fase_3_correo",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_roadmap_fase_3_correo"
     },
     {
       "label": "Fase 4 \u2014 Portal (Next.js)",
@@ -1228,11 +1272,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "fase 4 \u2014 portal (next.js)",
       "_origin": "semantic",
-      "id": "docs_roadmap_fase_4_portal",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_roadmap_fase_4_portal"
     },
     {
       "label": "Fase 5 \u2014 Dashboard",
@@ -1243,11 +1287,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 1,
       "norm_label": "fase 5 \u2014 dashboard",
       "_origin": "semantic",
-      "id": "docs_roadmap_fase_5_dashboard",
-      "community_name": "Portal, Correo y Dashboard"
+      "community_name": "Backend, DB e Infra",
+      "id": "docs_roadmap_fase_5_dashboard"
     },
     {
       "label": "Transversal \u2014 CI/CD, smoke, Bruno, Graphify",
@@ -1261,8 +1305,8 @@
       "community": 6,
       "norm_label": "transversal \u2014 ci/cd, smoke, bruno, graphify",
       "_origin": "semantic",
-      "id": "docs_roadmap_transversal",
-      "community_name": "Pruebas, CI/CD y Graphify"
+      "community_name": "Pruebas, CI/CD y Graphify",
+      "id": "docs_roadmap_transversal"
     },
     {
       "label": "Fases posteriores (backlog)",
@@ -1276,8 +1320,8 @@
       "community": 5,
       "norm_label": "fases posteriores (backlog)",
       "_origin": "semantic",
-      "id": "docs_roadmap_fases_posteriores",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_roadmap_fases_posteriores"
     },
     {
       "label": "Fuera de alcance",
@@ -1292,8 +1336,8 @@
       "community": 5,
       "norm_label": "fuera de alcance",
       "_origin": "semantic",
-      "id": "docs_roadmap_fuera_de_alcance",
-      "community_name": "Alcance y Backlog"
+      "community_name": "Alcance y Backlog",
+      "id": "docs_roadmap_fuera_de_alcance"
     },
     {
       "label": "Servicio db (Postgres 16-alpine)",
@@ -1306,8 +1350,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "servicio db (postgres 16-alpine)",
-      "id": "breteai_infra_docker_compose_servicio_db",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "breteai_infra_docker_compose_servicio_db"
     },
     {
       "label": "Red Docker breteai-net",
@@ -1320,8 +1364,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "red docker breteai-net",
-      "id": "breteai_infra_docker_compose_red_breteai_net",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "breteai_infra_docker_compose_red_breteai_net"
     },
     {
       "label": "Volumen db_data",
@@ -1334,8 +1378,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "volumen db_data",
-      "id": "breteai_infra_docker_compose_volumen_db_data",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "breteai_infra_docker_compose_volumen_db_data"
     },
     {
       "label": "Healthcheck del servicio db (pg_isready)",
@@ -1348,8 +1392,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "healthcheck del servicio db (pg_isready)",
-      "id": "breteai_infra_docker_compose_healthcheck",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "breteai_infra_docker_compose_healthcheck"
     },
     {
       "label": "Montaje ./db/init \u2192 /docker-entrypoint-initdb.d",
@@ -1362,8 +1406,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "montaje ./db/init \u2192 /docker-entrypoint-initdb.d",
-      "id": "breteai_infra_docker_compose_montaje_db_init",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "breteai_infra_docker_compose_montaje_db_init"
     },
     {
       "label": "Entorno local de desarrollo (PC del usuario)",
@@ -1376,8 +1420,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "entorno local de desarrollo (pc del usuario)",
-      "id": "claude_entorno_local",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "claude_entorno_local"
     },
     {
       "label": "PostgreSQL solo v\u00eda Docker (nunca paquete nativo)",
@@ -1391,8 +1435,8 @@
       "rationale": "PostgreSQL se instala \u00fanicamente v\u00eda BreteAI-Infra/docker-compose.yml (postgres:16-alpine en la red breteai-net), nunca como paquete nativo del sistema. Usa .env copiado de .env.example (no versionado) y aplica db/init/001_schema.sql (el DDL de design.md \u00a73) solo la primera vez que se crea el volumen. Para reaplicar el schema desde cero: `docker compose down -v && docker compose up -d` (borra los datos).",
       "community": 4,
       "norm_label": "postgresql solo via docker (nunca paquete nativo)",
-      "id": "claude_postgresql_solo_via_docker",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "claude_postgresql_solo_via_docker"
     },
     {
       "label": "DBeaver Community (cliente DB nativo por pacman)",
@@ -1406,8 +1450,8 @@
       "rationale": "Se instala DBeaver Community nativo por pacman (`sudo pacman -S dbeaver`, repo extra) en vez de usar la versi\u00f3n Flatpak. La versi\u00f3n Flatpak ven\u00eda preinstalada, quedaba desactualizada y generaba confusi\u00f3n con dos instalaciones simult\u00e1neas, por lo que se desinstal\u00f3.",
       "community": 4,
       "norm_label": "dbeaver community (cliente db nativo por pacman)",
-      "id": "claude_dbeaver_community",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "claude_dbeaver_community"
     },
     {
       "label": "DBeaver requiere Java 21+",
@@ -1421,8 +1465,8 @@
       "rationale": "Si DBeaver falla con 'incompatible JVM', usar `archlinux-java status` para ver JDKs disponibles y `sudo archlinux-java set java-26-openjdk` (o cualquier versi\u00f3n \u226521 disponible) para cambiar el JDK default del sistema.",
       "community": 4,
       "norm_label": "dbeaver requiere java 21+",
-      "id": "claude_dbeaver_requiere_java_21",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "claude_dbeaver_requiere_java_21"
     },
     {
       "label": "Activaci\u00f3n de Docker (systemctl + grupo docker)",
@@ -1435,8 +1479,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "activacion de docker (systemctl + grupo docker)",
-      "id": "claude_docker_systemctl",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "claude_docker_systemctl"
     },
     {
       "label": "Esquema de DB aplicado y verificado en DBeaver (2026-08-11)",
@@ -1449,8 +1493,8 @@
       "contributor": null,
       "community": 4,
       "norm_label": "esquema de db aplicado y verificado en dbeaver (2026-08-11)",
-      "id": "docs_roadmap_esquema_db_aplicado_verificado",
-      "community_name": "Docker Compose de Postgres"
+      "community_name": "Docker Compose de Postgres",
+      "id": "docs_roadmap_esquema_db_aplicado_verificado"
     }
   ],
   "links": [
@@ -1480,40 +1524,40 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L91",
+      "source_location": "L165",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
-      "target": "docs_guia_implementacion_estructura_de_m\u00f3dulos_fase_1_\u00e1rbol_completo",
+      "target": "docs_guia_implementacion_estructura_de_m\u00f3dulos_\u00e1rbol_completo",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
-      "target": "docs_guia_implementacion_fase_1_scraping_db",
+      "target": "docs_guia_implementacion_fase_1_scraping_db_implementada",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L70",
+      "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
-      "target": "docs_guia_implementacion_fase_2_ia_resumen",
+      "target": "docs_guia_implementacion_fase_2_ia_a_implementar",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L76",
+      "source_location": "L150",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1524,7 +1568,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L80",
+      "source_location": "L154",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1535,7 +1579,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L85",
+      "source_location": "L159",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1546,7 +1590,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L132",
+      "source_location": "L233",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_guia_implementacion_gu\u00eda_de_implementaci\u00f3n_breteai",
@@ -1557,10 +1601,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L62",
+      "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "docs_guia_implementacion_fase_1_scraping_db",
+      "source": "docs_guia_implementacion_fase_1_scraping_db_implementada",
       "target": "docs_guia_implementacion_no_hacer_en_esta_fase_para_no_salirse_de_alcance",
       "confidence_score": 1.0
     },
@@ -1568,10 +1612,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L42",
+      "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "docs_guia_implementacion_fase_1_scraping_db",
+      "source": "docs_guia_implementacion_fase_1_scraping_db_implementada",
       "target": "docs_guia_implementacion_orden_de_implementaci\u00f3n_breteai_backend_app",
       "confidence_score": 1.0
     },
@@ -1579,11 +1623,55 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/GUIA-IMPLEMENTACION.md",
-      "source_location": "L55",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "docs_guia_implementacion_fase_1_scraping_db",
+      "source": "docs_guia_implementacion_fase_1_scraping_db_implementada",
       "target": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_2_ia_a_implementar",
+      "target": "docs_guia_implementacion_decisiones_que_quedaron_abiertas_a_prop\u00f3sito",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L128",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_2_ia_a_implementar",
+      "target": "docs_guia_implementacion_no_hacer_en_esta_fase_para_no_salirse_de_alcance_128",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_2_ia_a_implementar",
+      "target": "docs_guia_implementacion_orden_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GUIA-IMPLEMENTACION.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_guia_implementacion_fase_2_ia_a_implementar",
+      "target": "docs_guia_implementacion_tests_de_esta_fase_ver_design_md_4_b",
       "confidence_score": 1.0
     },
     {
@@ -2649,5 +2737,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "858c9b3995d07d308684ec32898f729a98a92a89"
+  "built_at_commit": "201310fccd7b939d11bf25da4d16b2068c10bbdb"
 }
